@@ -1,0 +1,46 @@
+site_name: AMANEQ User Guide
+site_description: AMANEQ User Guide
+#site_author: 'R.Honda'
+repo_url: https://github.com/spadi-alliance/ug-amaneq
+repo_name: ug-amaneq
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: pink
+
+
+markdown_extensions:
+  - attr_list
+  - def_list
+  - markdown_katex:
+      no_inline_svg: true
+      insert_fonts_css: true
+#  - hbfm.inline_coloring
+#  - hbfm.inline_list
+#  - toc:
+#      slugify: !!python/name:hbfm.toc.slugify
+  #- hbfm.number_headers
+  #- hbfm.quote_uri_hash
+  - image_captions:
+      numbering: true
+  - caption:
+      numbering: true
+
+extra_css:
+  - css/custom.css
+
+site_name: AMANEQ User Guide
+site_author: Ryotaro Honda
+copyright: KEK IPNS
+
+nav:
+  - Top: index.md
+  - Release: release/release.md
+  - Hardware:
+    - Overview: hardware/overview.md
+#  - Firmware: firmware/main.md
+#  - For Developer: developer/main.md
+#  - Software: software/main.md
+#  - Practical Usage: practical/main.md
