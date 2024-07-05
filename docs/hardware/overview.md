@@ -1,8 +1,59 @@
-# MIKUMARI
+# Overview
 
-The MIKUMARI is a clock signal, timing, and synchronous command distribution technology for front-end electronics (FEE) based on the [clock-duty-cycle-modulation (CDCM)](https://ieeexplore.ieee.org/document/9131833). By distributing a modulated clock signal based on pulse width modulation (PWM), it is possible to transmit both clock signal and data on a single transmission line while achieving clock recovery without the clock-data-recovery (CDR) circuit. MIKUMARI consists of the CDCM based transceiver (CBT) and the link layer protocol, the MIKUMARI link. The CBT provides the functionalities of the physical layer, and the MIKUMARI link defines the communication protocol between physically connected link end points.
+AMANEQ (a main electronics for network oriented trigger-less data acquisition system) はトリガーレスDAQシステムのために開発された汎用FPGA回路です。
+和名は連続読み出しDAQ用フロントエンド主回路ですが、原則として英名表記を使ってください。
+現在では汎用回路として紹介していますが、もともとはJ-PARC E50実験用の主回路として開発された歴史を持ちます。
 
-The MIKUMARI is vender IP independent except for the serializer/de-serializer block in the CBT. Currently, the CBT is implemented for Xilinx 7-series FPGAs using the IOSERDES primitive.
+- 製造: 有限会社ジー・エヌ・ディー
+- 型番: GN-2006-4 (初期型: GN-2006-1)
+  - GN-2006-2とGN-2006-3は欠番です
+
+AMANEQの写真を[図](#AMANEQ-PIC)に示します。
+AMANEQはVME 6Uサイズの回路基板ですが、VMEバスを有しておらず前面と背面両方にIO用のコネクタが搭載されてています。
+前面には上から2つのデータリンク用SFP+、JTAGコネクタ、LED、NIM入出力、クロック同期ポート（MIKUMARI）、および電源コネクタが配置されています。
+背面には2つの主入力 (Main Input)と2つのメザニンスロット、および小型メザニンスロットが配置されています。
+メザニンスロット[Hadron Universal Logic (HUL)](https://openit.kek.jp/project/HUL/HUL)と互換になっており、HUL用に開発されたメザニンカードを取り付ける事が可能です。
+搭載FPGAはAMD Xilinx社のKintex-7 FPGA, XC7K-160T-2FFG676Cです。
+またボード上にはクロックジェネレータCDCE62002 (TI)が搭載されており、FPGA内のMMCMよりも低ジッタ―クロック信号が必要な場合利用します。
+トリガーレスDAQでは連続的にデータをPCへ向けてストリーミングするため、データドロップを回避するために大きなメモリが必要になります。
+そのため、AMANEQは2GbのDDR3-SDRAMを搭載しています。
+AMANEQのスペックについて以下のようにまとめます。
+
+- Size: VME 6U
+- FPGA: AMD Xilinx XC7K-160T-2FFG676C
+- Data links: SFP+ (10 Gbps x 2 in maximum)
+  - Link media depends on the type of SFP modules.
+- Num of NIM input: 2 (LEMO)
+- Num of NIM output: 2 (LEMO)
+- Power supply: 20-35V DC
+  - Jack: 2.10mm ID, 5.50mm OD
+  - Main connector: 日本圧着端子 S4P-VH(LF)(SN)
+- Fuse limit: 1A
+  - Fuse product: Littelfuse 0251001.NRT1L
+- Main inputs
+  - Num of channels: 32+32
+  - Connector: KEL 8831E-068-170L-F
+  - Supported IO standard: LVDS, ECL, PECL
+  - GND pin position: A1, A2, B1, B2 (A1 and B1 are located below the polarity mark.)
+- Num. of mezzanine slots: 2
+  - Compatible with HUL
+- Num of LED: 4
+- Num of DIP switch bits: 4
+- Clock generator IC: TI CDCE62002
+- External memory: 2Gb DDR3-SDRAM
+  - Speed: DDR3-1600 (max)
+
+![AMANEQ-PIC](amaneqs.png "GN-2006-4とGN-2006-1の写真"){: #AMANEQ-PIC width="95%"}
+
+## GN-2006-4とGN-2006-1の違いについて
+
+2つのバージョンの違いは前面にクロック同期（MIKUMARI）用のSFPポートがあるか無いかです。
+GN-2006-1にはMIKUMARIポートが無いため、[図](#AMANEQ-PIC)にあるようにmini-mezzanine card CRVを搭載してクロック同期を受けてください。
+この違いによりFPGAファームウェアはGN-2006-1用とGN-2006-4用に2種類存在します。
+右上のmini-mezzanine slotはGN-2006-4でも有効のため、CRVを搭載すればGN-2006-1用のファームウェアはGN-2006-4でも動きますが、逆は成り立ちません。
+
+
+
 
 ## Overview
 
