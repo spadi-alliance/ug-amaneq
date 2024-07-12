@@ -6,11 +6,12 @@ AMANEQ (a main electronics for network oriented trigger-less data acquisition sy
 
 - 製造: 有限会社ジー・エヌ・ディー
 - 型番: GN-2006-4 (初期型: GN-2006-1)
-  - GN-2006-2とGN-2006-3は欠番です
+    - GN-2006-2は特定の実験だけ所持者がいます
+    - GN-2006-3は欠番です
 
 AMANEQの写真を[図](#AMANEQ-PIC)に示します。
 AMANEQはVME 6Uサイズの回路基板ですが、VMEバスを有しておらず前面と背面両方にIO用のコネクタが搭載されてています。
-前面には上から2つのデータリンク用SFP+、JTAGコネクタ、LED、NIM入出力、クロック同期ポート（MIKUMARI）、および電源コネクタが配置されています。
+前面には上から2つのデータリンク用SFP+、JTAGコネクタ、LED、NIM入出力、クロック信号同期ポート（MIKUMARI）、および電源コネクタが配置されています。
 背面には2つの主入力 (Main Input)と2つのメザニンスロット、および小型メザニンスロットが配置されています。
 メザニンスロット[Hadron Universal Logic (HUL)](https://openit.kek.jp/project/HUL/HUL)と互換になっており、HUL用に開発されたメザニンカードを取り付ける事が可能です。
 搭載FPGAはAMD Xilinx社のKintex-7 FPGA, XC7K-160T-2FFG676Cです。
@@ -22,40 +23,74 @@ AMANEQのスペックについて以下のようにまとめます。
 - Size: VME 6U
 - FPGA: AMD Xilinx XC7K-160T-2FFG676C
 - Data links: SFP+ (10 Gbps x 2 in maximum)
-  - Link media depends on the type of SFP modules.
+    - Link media depends on the type of SFP modules.
 - Num of NIM input: 2 (LEMO)
 - Num of NIM output: 2 (LEMO)
 - Power supply: 20-35V DC
-  - Jack: 2.10mm ID, 5.50mm OD
-  - Main connector: 日本圧着端子 S4P-VH(LF)(SN)
+    - Jack: 2.10mm ID, 5.50mm OD
+    - Main connector: 日本圧着端子 S4P-VH(LF)(SN)
 - Fuse limit: 1A
-  - Fuse product: Littelfuse 0251001.NRT1L
+    - Fuse product: Littelfuse 0251001.NRT1L
 - Main inputs
-  - Num of channels: 32+32
-  - Connector: KEL 8831E-068-170L-F
-  - Supported IO standard: LVDS, ECL, PECL
-  - GND pin position: A1, A2, B1, B2 (A1 and B1 are located below the polarity mark.)
+    - Num of channels: 32+32
+    - Connector: KEL 8831E-068-170L-F
+    - Supported IO standard: LVDS, ECL, PECL
+    - GND pin position: A1, A2, B1, B2 (A1 and B1 are located below the polarity mark.)
 - Num. of mezzanine slots: 2
-  - Compatible with HUL
+    - Compatible with HUL
 - Num of LED: 4
 - Num of DIP switch bits: 4
 - Clock generator IC: TI CDCE62002
 - External memory: 2Gb DDR3-SDRAM
-  - Speed: DDR3-1600 (max)
+    - Speed: DDR3-1333 (max)
 
-![AMANEQ-PIC](amaneqs.png "GN-2006-4とGN-2006-1の写真"){: #AMANEQ-PIC width="95%"}
+![AMANEQ-PIC](amaneqs.png "Picture of GN-2006-4 and GN-2006-1"){: #AMANEQ-PIC width="100%"}
 
-## GN-2006-4とGN-2006-1の違いについて
+## Difference between GN-2006-4 and GN-2006-1
 
 2つのバージョンの違いは前面にクロック同期（MIKUMARI）用のSFPポートがあるか無いかです。
-GN-2006-1にはMIKUMARIポートが無いため、[図](#AMANEQ-PIC)にあるようにmini-mezzanine card CRVを搭載してクロック同期を受けてください。
+GN-2006-1にはMIKUMARIポートが無いため、[図](#AMANEQ-PIC)にあるようにmini-mezzanine card CRVを搭載してクロック信号同期を受けてください。
 この違いによりFPGAファームウェアはGN-2006-1用とGN-2006-4用に2種類存在します。
 右上のmini-mezzanine slotはGN-2006-4でも有効のため、CRVを搭載すればGN-2006-1用のファームウェアはGN-2006-4でも動きますが、逆は成り立ちません。
 
+## Board interface
+
+### Main input
+
+AMANEQにバックプレーンが存在しないので、前後両方に入出力が存在します。後ろ側には2つのメイン入力 (Main Input) が存在します。これらはHULのメイン入力と互換です。上側をMain Input U、下側をMain Input Dとします。
+
+コネクタはハーフピッチの68極コネクタ（KEL 8831E-068-170L-F）です。適合するコネクタでケーブルを作成して接続してください。チャンネルアサインはコネクタの基準マーカー側が若い番号になります。GND接続はA1A2、およびB1B2の2ペア (基準マーカー直下) です。コモンモードレンジで-4Vから+5Vまでの差動信号をサポートします。LVDS、ECL、PECL、LVPECLなどがサポート対象です。ECLおよびPECL信号規格を利用する場合、AMANEQ側には電流制限抵抗が存在しないため、ドライバ側で電流制御されている必要があります。
+
+メイン入力では差動信号をLVCMOSに変換してからFPGAへ入力します。最高繰り返しスピードは560 Mbpsです。それよりも高速な信号を入力する場合メザニンカードの使用を検討してください。
+
+### SFP1, 2
+
+データ通信用のSFP+ポートです。FPGAのGTXトランシーバへ接続されています。最大通信速度は10 Gbpsです。SFPおよびSFP+モジュールが適合します。SFP1と2の利用方法は各ファームウェアに依存します。
+
+[SiTCP](https://www.bbtech.co.jp/sitcp/)ないし[SiTCP-XG](https://www.bbtech.co.jp/products/sitcp-xg-license/)を利用したファームウェアでは、このポートへGbE用か10GbE用のSFPモジュールを挿入してください。
+SFPモジュールは多数の選択肢が存在しますが、複数の通信レートに対応したモジュール、例えば1Gbps、100Mbps、10Mbpsの3種類に対応したもの、は利用しないでください。オートネゴシエーションがうまく働かないためです。SiTCPではれば1Gbps専用の物を、SiTCP-XGであれば10Gbps専用の物を選択してください。
+
+### DIP, LED, NIM
+
+![LED-DIP-NIM](amaneq-led-nim.png "LED, DIP, and NIM"){: #LED-DIP-NIM width="75%"}
+
+縦に5つ並んだLEDのうち一番上がDONE LEDです。このLEDはFPGAのコンフィグレーションが終了すると点灯します。残りの4つは上からLED1, 2, 3, 4とラベルされています。各LEDの意味はファームウェアに依存します。
+DIPスイッチは左側が0 (ONとラベルされている側)、右側が1と定義されています。各ビットの意味はファームウェアに依存します。
+NIM入出力は基板上側が入力、下側が出力です。AMANEQのNIM出力はNIM信号規格へ変換する部分で簡略化した方式を採用しており、 logic-highとして認識する電圧に基板差があります。そのため、同一のファームウェアでNIM出力をしたとしても、信号幅やタイミングが若干異なって見えることがあります。AMANEQのNIM入出力は補助入力と考えてください。タイミングが重要な高精度信号の入出力には向いていません。
+2つあるNIM1とNIM2は基板上のシルクに印字されています。
+
+### Power supply
+
+電源コネクタはAD/DCアダプタ用のジャック（径 2.10mm ID, 5.50mm OD）と、外部DC電源用に日本圧着端子のS4P-VH(LF)(SN)が備わっています。
+想定している電源電圧は20-35Vです。
+**2つ端子は基板上でつながっており、30V程度の電圧が印加された電極がむき出し状態になります。**
+ジャックへキャップをはめたり、S4Pコネクタにテープ等でカバーをしたりして感電を防いでください。
+S4Pコネクタは電極が4つあり、上2つが電源、した二つがグランドです。
+
+AMANEQではスイッチングレギュレータを用いて高い電圧から5Vへ降圧しています。このスイッチングレギュレータの仕様的に10V程度から40V程度まで入力を受け付けることができますが、下限はヒューズの電流制限で20V程度に、上限は破損を防ぐために35V程度を推奨にしています。
+ヒューズは外部電源の35V系に挿入されており、電流リミットは1Aです。20V以下の電源電圧ではヒューズが切れるので、印加しないでください。また、同じ理由からゆっくり電圧を35Vまで上げるのもやめてください。AC/DCアダプタは24V出力の物が適合しますが、出力パワーが20W程度あるものを選んでください。AMANEQ基板の消費電力はSkeletonファームウェアを除くと全て10Wを超えています。
 
 
-
-## Overview
 
 The minimum configuration of the MIKUMARI is shown in the [figure](#MIKUMARI-MIN-CONFIG). The left and right hand sides are the primary and the secondary, respectively. The purpose of the MIKUMARI is distributing the reference clock signal to all the FEEs, and then a primary module may have an oscillator. To operate the system, two skew adjusted clock signals are necessary. One is the parallel clock signal to drive the parallel data path, and the other is the serial clock signal to drive the transmission line. In many cases, the reference clock will be equal to the parallel clock. The frequency ratio between the serial and parallel clock signals is defined by the modulation pattern. If the CDCM-10-XX (See [Ref](https://ieeexplore.ieee.org/document/9131833).) is used, the developer has to prepare the 5 times faster serial clock signal than that of the parallel clock, and 4 times faster clock signal is necessary for CDCM-8-XX. The maximum transferable reference (parallel) clock frequency is determined by the maximum acceptable clock signal frequency of the clock buffer in FPGA or the maximum data rate of IO pads. For example for Kintex-7 with the speed-grate -1 and the FBG package, the maximum BUFG speed and the maximum IO rate are 625 MHz and 1250 Mbps (HP bank case), and then the maximum transferable parallel clock speed is 125 MHz with CDCM-10-XX.
 
