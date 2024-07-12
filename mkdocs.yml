@@ -39,7 +39,8 @@ nav:
   - Top: index.md
   - Release: release/release.md
   - Hardware:
-    - Overview: hardware/overview.md
+    - Overview: hardware/overview/overview.md
+    - Mezzanine cards: hardware/mezzanine/mezzanine.md
 #  - Firmware: firmware/main.md
 #  - For Developer: developer/main.md
 #  - Software: software/main.md
