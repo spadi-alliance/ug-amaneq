@@ -41,7 +41,10 @@ nav:
   - Hardware:
     - Overview: hardware/overview/overview.md
     - Mezzanine cards: hardware/mezzanine/mezzanine.md
-#  - Firmware: firmware/main.md
+    - Housing: hardware/housing/housing.md
+    - Differences in HUL: hardware/diff-hul/diff-hul.md
+    - For developers: hardware/for-developers/for-developers.md
+  - Firmware: firmware/overview/overview.md
 #  - For Developer: developer/main.md
 #  - Software: software/main.md
 #  - Practical Usage: practical/main.md
