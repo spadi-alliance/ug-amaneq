@@ -130,10 +130,18 @@ CECE62002は多数の設定項目があるためこれらの読み書きのシ�
 |kAddrLocalFineOffset|0x00900000|R|16|LACCPが算出したlocal fine offsetを取得します。(LACCPセカンダリ側のみ有効)|
 |kAddrLaccpFineOffset|0x00A00000|R|16|LACCPが算出したLACCP fine offsetを取得します。（LACCPセカンダリ側のみ有効)|
 |kAddrHbfState|0x00B00000|W/R|1|ハートビートフレーム状態を設定します。1でDAQ running、0でDAQ idleです。そのクロック分配ネットワークのrootモジュールでのみ有効。|
+|kAddrRstOverMiku|0x00C00000|W|32|下流モジュールに対して[MIKUMARIリセット](#reset-signals)を発行する。1でリセット発行。|
 |kAddrRegIndex|0x01000000|W/R|6|いくつかのレジスタにおいて読み書きを行う対象のポート番号を指定します。|
 |kAddrNumLinks|0x02000000|R|6|そのファームウェアが備えているMIKUMARIリンクの数を取得します。|
 
 [MIKUMARIリンクプロトコル](https://github.com/RyotaroHonda/mikumari)やLACCPのステータス参照や、制御を行うためのユーティリティモジュールです。
+デフォルトのモジュールIDは0x0ですが、ファームウェアによっては守られていない事があります。各ファームウェアのマニュアルをチェックしてください。
 ファームウェア上に存在するMIKUMARIポートの状態監視を一括で行います。
 上流からクロックを受信するMIKUMARIセカンダリと、復元クロック信号を下流へ再送信するMIKUMARIプライマリとでは取得できる情報が一部異なります。
+MikumariClockHubを例とした取得可能な情報のまとめを[図](#MUTIL)に示します。この例ではMIKUMARI linkの数は17です。
+0から15がプライマリに割り振られており、16がセカンダリです。ステータスビットや制御ビットは全ポートを一括で指します。
+常にセカンダリから情報を取るレジスタと、RegIndexによって参照先が変わるレジスタが存在します。この例ではRegIndexは15に設定されています。
 
+ユーザー用に用意されているMUTIL用の実行体はhul-common-libのshow_mikumariとshow_laccpです。どちらも情報をまとめてコンソール上に標準出力します。
+
+![MUTIL](mutil.png "Summary of information taken by Mikumari Utility. Example for MikumariClockHub firmware is shown."){: #MUTIL width="70%"}

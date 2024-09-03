@@ -44,6 +44,7 @@ nav:
     - Housing: hardware/housing/housing.md
     - Differences in HUL: hardware/diff-hul/diff-hul.md
     - For developers: hardware/for-developers/for-developers.md
+  - Synchronization: synchronization/sync.md
   - Firmware: firmware/overview/overview.md
 #  - For Developer: developer/main.md
 #  - Software: software/main.md
