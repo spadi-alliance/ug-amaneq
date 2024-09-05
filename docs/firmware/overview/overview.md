@@ -145,3 +145,20 @@ MikumariClockHubを例とした取得可能な情報のまとめを[図](#MUTIL)
 ユーザー用に用意されているMUTIL用の実行体はhul-common-libのshow_mikumariとshow_laccpです。どちらも情報をまとめてコンソール上に標準出力します。
 
 ![MUTIL](mutil.png "Summary of information taken by Mikumari Utility. Example for MikumariClockHub firmware is shown."){: #MUTIL width="70%"}
+
+### Flash Memory Programmer (FMP)
+
+ボード上のFlashメモリにMCS/BINファイルを書き込むためのモジュールです。
+詳しくはHULのユーザーガイドを参照してください。
+
+### Self Diagnosis System (SDS)
+
+SEMとXADCを使った自己診断モジュールです。
+詳しくはHULのユーザーガイドを参照してください。
+
+### Local Bus Controller (BCT)
+
+ローカルバスマスタです。外部データリンクと内部バスのバスブリッジを行います。
+FPGAのリコンフィグ要求、バージョンと固有名の取得、BCTリセットの発行を行えます。
+詳しくはHULのユーザーガイドを参照してください。
+
