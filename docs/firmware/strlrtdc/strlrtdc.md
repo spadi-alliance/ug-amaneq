@@ -12,7 +12,7 @@ Streaming low-resolution TDC (Str-LRTDC)は129ch入力の1ns精度連続読み�
 |:----:|:----|:----|
 |v2.5|2024.6.4|事実上の初期版|
 
-## Functions
+### Functions
 
 ![BL-DIAGRAM](block-diagram.png "Simplified block diagram of Str-LRTDC."){: #BL-DIAGRAM width="100%"}
 
@@ -72,3 +72,6 @@ MIKUMARIシステムを利用している場合、1-3番がすべて点灯して
     - 1: ローカル発振器を使用しスタンドアロンモードになります
 - DIP4: Not in use
 -->
+
+## Streaming-TDC block
+

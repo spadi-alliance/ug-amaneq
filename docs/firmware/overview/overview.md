@@ -149,7 +149,7 @@ MikumariClockHubを例とした取得可能な情報のまとめを[図](#MUTIL)
 ### Flash Memory Programmer (FMP)
 
 ボード上のFlashメモリにMCS/BINファイルを書き込むためのモジュールです。
-詳しくはHULのユーザーガイドを参照してください。
+HULのFMPと完全に同一のため、詳しくはHULのユーザーガイドを参照してください。
 
 ### Self Diagnosis System (SDS)
 
