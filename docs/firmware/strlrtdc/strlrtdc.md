@@ -12,7 +12,7 @@ Streaming low-resolution TDC (Str-LRTDC)は129ch入力の1ns精度連続読み�
 |:----:|:----|:----|
 |v2.5|2024.6.4|事実上の初期版|
 
-### Functions
+## Functions
 
 ![BL-DIAGRAM](block-diagram.png "Simplified block diagram of Str-LRTDC."){: #BL-DIAGRAM width="100%"}
 
@@ -73,5 +73,26 @@ MIKUMARIシステムを利用している場合、1-3番がすべて点灯して
 - DIP4: Not in use
 -->
 
+## Local bus modules
+
+Str-LRTDCには6個のローカルバスモジュールが存在します。
+以下がローカルバスアドレスのマップです。
+
 ## Streaming-TDC block
 
+### Basic structure of streaming TDC
+
+Str-HRTDCや他の連続読み出し用のファームウェアはStr-LRTDCの構造が基になっています。
+ここでは連続読み出しTDCの基本構造についてまず記述します。
+伝統的なtriggered-type DAQシステムでは、トリガー信号が基準タイミングとなり、その周辺のデータをまとめる事でイベントデータブロックを形成します。
+これがフロントエンド回路の最小データ構造になる事が多いです。
+トリガーレスDAQシステムでは、ハードウェアトリガーが存在しないため、イベントをデータブロックの単位に取る事が出来ません。
+そこで、[Synchronization](#synchronization)のセクションで述べた時刻の構造をデータブロックにも当てはめます。
+ハートビートフレームの1周期を定義しているのは16-bitのハートビートカウンターです。
+この16-bitカウンタ値をfine-scaleのタイムスタンプ (8ns精度, 524us長)として各DAQデータワードに与えます。
+次にデータブロック、つまりハートビートフレームの境目を示すために、ハートビートデリミタと呼ばれる区切りデータワードをハートビート信号のタイミングで挿入します。
+ハートビートデリミタはcoarse-scaleのタイムスタンプ (524us精度, 2.4h長)である24-bit長のフレーム番号を持ちます。
+
+
+
+![TDC-BLOCK](strlrtdc-block.png "Block diagram of streaming TDC block"){: #TDC-BLOCk width="100%"}
