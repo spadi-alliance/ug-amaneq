@@ -6,6 +6,8 @@ repo_name: ug-amaneq
 
 theme:
   name: material
+  features:
+    - toc.integrate
   palette:
 #    scheme: slate
     scheme: default
