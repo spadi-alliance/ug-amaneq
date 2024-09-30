@@ -160,6 +160,9 @@ DAQ状態はOFFからONへ切り替わるときはハートビートを待って
 また、複数モジュールがある場合、TCP接続が確立するまでの時間は通常ばらつきます。
 そのため、DAQ RUNスタート時に各モジュールがデータ送信を開始するフレーム番号は一致するとは限りません。
 これを問題視するかどうかも、やはりユーザーに委ねています。
+[図](#DAQ-ONOFF)はTCP接続状態でDAQ状態が決まるような運用をした場合に送信されるデータの範囲を示しています。
+
+![DAQ-ONOFF](daq-onoff.png "Data to be transferred to a PC when the DAQ state is determined by the TCP connection status."){: #DAQ-ONOFF width="90%"}
 
 上記の事を問題視し、DAQ状態の切り替わりをハートビートへ同期したい場合、先にTCP接続を確立させておいて後からフレーム状態をアクティブにする必要があります。DAQを止める場合は先にフレーム状態をアイドルへ変更してからTCP接続を切ります。
 この場合、各FEEのTCP接続状態を何らかの方法で監視して、すべてのTCP接続が確立したことを確認しないといけません。
@@ -274,6 +277,8 @@ Input throttling type-2が働いている間このユニットはデリミタデ
 Input throttling type-1は概念だけが定義されていて未実装ですが、入力データレートが急激に増えると起動しODPブロックの2us 遅延バッファの後でデータを消去する機能です。
 Type-2のように一度メモリに書いてしまったデータが排出されるまで待つ必要が無いので高効率ではありますが、瞬間的にレートが上がったことの判断が難しいため現在は未実装です。
 
+
+
 Output throttlingはバックプレッシャーからStreaming TDCを守る機能です。
 SiTCP直前のバッファ (link buffer) のprogrammable full flagが立っているときにinput throttling type-2が働くとこの機能が起動します。
 Output throttlingユニットは働いている間back-mergerからデータを読み出して、TDCデータを破棄しつつデリミタデータのみlink bufferへ書き込みます。
@@ -314,19 +319,122 @@ Throttling data word
    Data type       Channel            Reserve            Throttling timing            Zero padding
 ```
 
+以下は先頭の6-bit data typeのリストです。
+Input throttling type-1のデータタイプは予約だけされています。
 
+|6-bit data-type pattern|Type|
+|:----:|:----|
+|b001011|Leading edge timing|
+|b001101|Trailing edge timing|
+|b011001|Input throttling type-1 start|
+|b010001|Input throttling type-1 end|
+|b011010|Input throttling type-2 start|
+|b010010|Input throttling type-2 end|
+
+Leading/trailing data wordではLSB精度はTOT、TDCタイミングともに1nsです。
+TOT領域は16-bit確保されていますが、最大TOT値は4000nsです。それ以上のTOT値が返ってくることはありません。
+TDCタイミング領域は内部的には16-bit fine-scale timestamp + 3-bit fine timingとなっています。
+
+Throttling data wordはinput throttlingが起動と終了した時の時刻を示しています。
+Input throttling type-2はチャンネル毎に働くため、8-bit channelの領域はleading/trailing data wordと同じ範囲の値を取ります。
+16-bit throttling timingは内部的には16-bit fine-scale timestampです。そのためLSB精度は8nsです。
+これらのデータが挿入されるタイミングを[図](#ITHROT-T2)に示します。
+
+![ITHROT-TYPE2](ithrott-type2.png "Data blocked by the input throttling type-2."){: #ITHROT-T2 width="70%"}
 
 #### Heartbeat delimiter category
 
 ```
 1st delimiter
 [    6-bit    ][ 2-bit ][       16-bit       ][       16-bit        ][              24-bit               ]
-   Data type    Reserve          Flags           LACCP time offset           Heartbeat frame number
+   Data type    Reserve          Flags          LACCP fine offset            Heartbeat frame number
 
 2nd delimiter
 [    6-bit    ][ 2-bit ][       16-bit       ][           20-bit           ][           20-bit           ]
    Data type    Reserve        User reg.        Generated data size [byte]   Transferred data size [byte]
-
-
 ```
+
+|6-bit data-type pattern|Type|
+|:----:|:----|
+|b011100|1st heartbeat delimiter|
+|b011110|2nd heartbeat delimiter|
+
+ハートビートデリミタワードは64-bitワードが2つ連続して128-bit長で挿入されます。
+2つのデリミタワードが分かれてしまう事はありません。
+もし連続していない場合、データ破損を起こしています。
+
+1st delimiter wordの16-bit flagsは該当ハートビートフレームにおけるDAQのステータスフラグを示します。
+以下に各ビットの意味をまとめます。
+
+|Bit|Flag|Comment|
+|:----:|:----|:----|
+|16th bit|Reserve| |
+|15th bit|Radiation URE|Unrecoverable error of FPGA by radiation. FPGA reconfiguration is requested.|
+|14th bit|Miku Communication error|There was some kind of communication error of the MIKUMARI link in the heartbeat frame.|
+|13th bit|Reserve| |
+|12th bit|Overflow|Incoming FIFO's Almost full or full flags are asserted. Unexpected data load. There is a risk of data corruption.|
+|11th bit|Global HBF num mismatch|The frame number received via the MIKUMARI mismatches with the local frame number. (Potentially communication error).|
+|10th bit|Local HBF num mismatch|Merger block combined the data block with different frame number. It indicates the data corruption.|
+|9th bit|Reserve| |
+|8th bit|Input throttling type1| |
+|7th bit|Input throttling type2|Input throttling type2 was working in this frame.|
+|6th bit|Output throttling|A part of data were discarded by the output throttling.|
+|5th bit|HBF throttling|This frame does not contain the TDC data because of the HBF throttling.|
+|4th bit|Reserve| |
+|3rd bit|Reserve| |
+|2nd bit|Reserve| |
+|1st bit|Reserve| |
+
+16-bit LACCP fine offsetはLACCPが導出したfine offset値であり、16-bit符号付き整数です。
+LSBの時間精度は0.9765625 (1/1.024) psであり、Str-HRTDCのビット精度と同一です。
+デフォルトではLACCP fine offsetによってTDC値は補正されておりこの欄は0になっていますが、この補正機能をオフにすると自動補正が行われず、LACCP fine offsetがこの欄に現れます。
+ソフトウェア上ではこの値をleading/trailing timingへ**加算**して時刻補正を行います。
+ハートビートタイミングに近いTDCデータは場合によっては補正後に隣のフレームへ動かさないといけないことがあるので、ソフト上で補正したい場合はフレーム跨ぎの処理を正しく実装してください。
+
+Heartbeat frame numberは当該フレームのフレーム番号です。
+
+2nd delimiter wordの16-bit user reg.はPCから設定可能な任意のレジスタ値です。
+SiTCPのRBCP経由でレジスタを書き込むと、デリミタワードのこの位置に現れます。
+PCから情報をここへ書き込んでおくと、解析の時にデータベースへのキー値などとして利用する事ができます。
+ただし、ネットワーク経由で書き込むため時間精度は高くありません。
+
+20-bit generated data sizeはこのフレーム内でODPブロックが生成したデータ量を示します。
+この数値はdelimiter inserterで計算されており、各種スロットリング機能の影響を受ける前の生成データ量です。
+20-bit transferred data sizeはデータリンクまで到達したデータサイズです。
+もしFPGA内で一切のデータドロップが無い場合この値はgenerated data sizeに一致します。
+データドロップを起こす主な理由はスロットリング機能ですが、非常に入力レートが高い場合それ以外にもドロップを発生させる可能性があり、そのような場合16-bit flagsにthrottling bitが立っていなくてもtransferred data sizeのほうが小さくなることがあります。
+
+### Register address map
+
+|Register name|Address|Read/Write|Bit width|Comment|
+|:----|:----|:----:|:----:|:----|
+|kTdcMaskMainU     | 0x1000'0000|   W/R|32|Channel mask for 0-31ch    (default: 0x0)|
+|kTdcMaskMainD     | 0x1010'0000|   W/R|32|Channel mask for 32-63ch   (default: 0x0)|
+|kTdcMaskMznU      | 0x1020'0000|   W/R|32|Channel mask for 64-95ch   (default: 0x0)|
+|kTdcMaskMznD      | 0x1030'0000|   W/R|32|Channel mask for 96-127ch  (default: 0x0)|
+|kTdcMaskEx        | 0x10E0'0000|   W/R|32|Channel mask for 128-159ch (default: 0x0)|
+|	  		    | | | | |
+|kEnBypass         | 0x1040'0000|   W/R|2|Enable bypass for 2-us delay buffer and paring unit. (default: 0x0) <br> 1st-bit: Enable bypass for 2-us delay buffer <br> 2nd-bit: Enable bypass for paring unit|
+|	  		    | | | | |
+|kTotFilterCtrl    | 0x1050'0000|   W/R|2|Enable TOT filter. (default: 0x0) <br> 1st-bit: Enable TOT filter unit <br> 2nd-bit: Enable zero-TOT through mode|
+|kTotMinTh         | 0x1060'0000|   W/R|16|TOT filter low threshold|
+|kTotMaxTh         | 0x1070'0000|   W/R|16|TOT filter high threshold|
+|	  		    | | | | |
+|kTrgEmuCtrl       | 0x1080'0000|   W/R|2|Set trigger emulation mode. (default: 0x0) <br> 1st-bit: Enable trigger gate mode <br> 2nd-bit: Enable Veto gate mode|
+|kTrgEmuDelay      | 0x1090'0000|   W/R|8|Set the delay from the trigger (veto) input to opening the trigger (veto) gate. LSB precision is 8ns.|
+|kTrgEmuWidth      | 0x10A0'0000|   W/R|16|Set the trigger (veto) gate width. LSB precision is 8ns.|
+|			    | | | | |
+|kHbfThrottCtrl    | 0x10B0'0000|   W/R|4|Set the heartbeat frame throttling condition. <br> 0x0: Disable (default) <br> 0x1: Only data for frame numbers that are multiples of 2 is acquired. <br> 0x2: Only data for frame numbers that are multiples of 4 is acquired. <br> 0x4: Only data for frame numbers that are multiples of 8 is acquired. <br> 0x8: Only data for frame numbers that are multiples of 16 is acquired.|
+|			    | | | | |
+|kHbdUserReg       | 0x10C0'0000|   W|16| The register value to be embedded to the 2nd delimiter word.|
+| | | | | |
+|kSelfRecoveryMode | 0x10D0'0000|   W/R|1| Enable the automatic recovery process for the local heartbeat frame mismatch (default: 0x0). |
+
+**補足説明**
+
+- TdcMask
+  - TdcMaskをセットすると該当チャンネルからTDCデータが出力されなくなります。
+  - LSB側が若いチャンネル番号に対応します。
+  - Scalerへは影響を与えません。
+
 
