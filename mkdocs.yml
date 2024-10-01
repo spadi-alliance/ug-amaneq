@@ -6,13 +6,14 @@ repo_name: ug-amaneq
 
 theme:
   name: material
+  hide:
+    - navigation
   features:
     - toc.integrate
   palette:
 #    scheme: slate
     scheme: default
     primary: pink
-
 
 markdown_extensions:
   - attr_list
@@ -52,6 +53,5 @@ nav:
     - Overview: firmware/overview/overview.md
     - Skeleton: firmware/skeleton/skeleton.md
     - Str-LRTDC: firmware/strlrtdc/strlrtdc.md
-#  - For Developer: developer/main.md
-#  - Software: software/main.md
+  - Software: software/software.md
 #  - Practical Usage: practical/main.md

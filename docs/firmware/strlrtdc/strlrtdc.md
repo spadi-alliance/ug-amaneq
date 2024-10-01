@@ -4,6 +4,8 @@
 
 Streaming low-resolution TDC (Str-LRTDC)は129ch入力の1ns精度連続読み出しTDCです。
 
+[Github repository](https://github.com/AMANEQ-official/StrLrTdc)
+
 ```
 - Unique ID:                  0x60c4
 
@@ -93,6 +95,16 @@ MIKUMARIシステムを利用している場合、1-3番がすべて点灯して
 Str-LRTDCには6個のローカルバスモジュールが存在します。
 以下がローカルバスアドレスのマップです。
 
+|Local Module|Address range|
+|:----|:----|
+|Mikumari Utility        |0x0000'0000 - 0x0FFF'0000|
+|Streaming TDC           |0x1000'0000 - 0x1FFF'0000|
+|Scaler                  |0x8000'0000 - 0x8FFF'0000|
+|CDCE62002 Controller    |0xB000'0000 - 0xBFFF'0000|
+|Self Diagnosis System   |0xC000'0000 - 0xCFFF'0000|
+|Flash Memory Programmer |0xD000'0000 - 0xDFFF'0000|
+|Bus Controller          |0xE000'0000 - 0xEFFF'0000|
+
 ## Streaming-TDC block
 
 ### Basic structure of streaming TDC
@@ -112,12 +124,12 @@ Str-HRTDCや他の連続読み出し用のファームウェアはStr-LRTDCの�
 また、デリミタデータはそのフレームのステータスサマリーなども持っています。
 ハートビートデリミタはハートビートフレームの最後につきます。
 
-![DATA-BLOCK](data-block.png "Heartbeat frame structure as a data block"){: #DATA-BLOCK width="80%"}
+![DATA-BLOCK](data-block.png "Heartbeat frame structure as a data block"){: #DATA-BLOCK width="70%"}
 
 以上の事をまとめると[図](#DATA-BLOCK)のようになります。
 Streaming TDCはTDCデータとフレームの区切りを示すデリミタデータを連続的に送信します。
 
-![TDC-BLOCK](strlrtdc-block.png "Block diagram of streaming TDC. Str-LRTDC case is shown as an example."){: #TDC-BLOCK width="80%"}
+![TDC-BLOCK](strlrtdc-block.png "Block diagram of streaming TDC. Str-LRTDC case is shown as an example."){: #TDC-BLOCK width="65%"}
 
 時刻情報はLACCPによって同期されたheartbeat unitが定義しています。
 Streaming TDCはこれを参照するだけで、heartbeat unitを制御することはありません。
@@ -225,6 +237,7 @@ TOTの下限値を設定した場合TOTが0のデータは本来フィルター�
 Streaming TDCはトリガーレスモードが基本ではありますが、データ量削減のためにハードウェアトリガーの入力を受け付けることができます。
 トリガーはNIM入力か、MIKUMARI経由で上流のモジュールから受け取ることが可能です。
 この機能をオンにしてトリガーを入力するとゲートが開き、ゲートが開いている間だけデータを下流へ送信します。
+ゲートが開いている間に次のトリガー (ベト)信号がやってきた場合、ゲート長が延長されます。
 トリガー入力からゲートを開くまでの遅延時間と、ゲート長はネットワーク経由で設定可能です。
 トリガーレスモードの場合は、このゲートが常に開いている状態に相当します。
 
@@ -464,9 +477,73 @@ FIFOから読み出しを行わずに再度ラッチリクエストを発行す�
 
 スケーラーデータワード長は32-bitです。
 データブロックは先頭に18-word (72-byte)分のシステム情報が存在し、そのあとN-word分のヒットスケーラー値が続きます。
+データの並びは先頭から以下のようになります。
 
 - System information (18 words)
-- Hit scaler values  (N words)
+- Channel-0 scaler value
+- Channel-1 scaler value
+- Channel-2 scaler value
+- ...
 
-**System informationの要素**
+**Contents of system information**
 
+|Word number|Content|Comment|
+|:----:|:----|:----|
+|1st|Heartbeat count|16-bit fine-scale timestamp when receiving the latch request|
+|2nd|Heartbeat frame number|24-bit coarse-scale timestamp when receiving the latch request|
+|3rd|Real time|Time elapsed after power-on|
+|4th|Daq run time| Total run time while the DAQ state is running |
+|5th|Total throttling time| Total time while any of throttling functions are running|
+|6th|Input throttling type-1 time| Total time while input throttling type-1 is running|
+|7th|Input throttling type-2 time| Total time while input throttling type-2 is running|
+|8th|Output throttling time| Total time while output throttling is running|
+|9th|Hbf throttling time| Total time while heartbeat frame throttling is running|
+|10th|Mikumari error number| The number of communication error happened in the MIKUMARI link|
+|11th|Trigger request| The number of trigger inputs|
+|12th|Trigger rejected| The number of rejected trigger inputs|
+|13th|Reserve| |
+|14th|Reserve| |
+|15th|Reserve| |
+|16th|Reserve| |
+|17th|Reserve| |
+|18th|Reserve| |
+
+先頭2ワードがラッチリクエスト到達時刻を示しています。
+この値を頼りにして差分を取り、レート計算を行ってください。
+
+Real time, daq run time, throttling timeにおける1-bitの時間単位は1 heartbeat periodです。
+積算時間が1 heartbeat長に満たない間はカウントは増えません。
+
+MIKUMARIの通信エラー数は電源投入からリンク確立前の間に多少増える事があります。
+リンク確立後に増加しているかどうかを差分を取って確認してください。
+
+Trigger requestとtrigger rejectedは時刻同期用のファームウェアでのみ有効な機能です。
+時刻同期ネットワークのroot-moduleはトリガーを受信するとMIKUMARI経由で下流モジュールへトリガーパルスを送信しますが、MIKUMARIは極めて近接した2パルスを送る事が出来ません。
+Trigger requestはroot-moduleへ入力されたトリガー数、trigger rejectedは下流モジュールへ送信できなかったトリガー数を示します。
+Str-LRTDCではこの欄は0です。
+
+### Register address map
+
+|Register name|Address|Read/Write|Bit width|Comment|
+|:----|:----|:----:|:----:|:----|
+|kAddrScrReset  | 0x80000000|  W|1| Reset signals <br> 0x1: Local reset <br> 0x2: Global reset <br> 0x4: FIFO reset|
+|kAddrLatchCnt  | 0x80100000|  R|1| Send latch request|
+|kAddrNumCh     | 0x80200000|  R|8| Number of words of scaler data block including system information (unit: words)|
+|kAddrStatus    | 0x80300000|  R|8| Scaler unit status|
+|kAddrReadFIFO  | 0x81000000|  R|-| Address to read data from FIFO|
+
+**補足説明**
+
+- AddrScrReset
+    - Local resetはアクセス先のスケーラーカウントのリセットを行います。
+    - Global resetはアクセス先のスケーラーカウントをリセットし、さらにMIKUMARIリンク経由でスケーラーリセット信号を下流モジュールへ送信します。MikuClockRootファームウェアでのみ有効な機能です。
+    - FIFO resetはアクセス先のFIFOの中身をリセットします。
+- LatchCnt
+    - このアドレスへ読み出しアクセスをするとラッチリクエストになります。
+- NumCh
+    - スケーラーデータブロックのワード数はファームウェアによって異なるので、何ワード読み出したらよいか知るためのレジスタです。読むべきワード数が得られます。
+- Status
+    - 1st-bit: FIFO empty
+    - others: Reserved
+- ReadFIFO
+    - 1-byteずつデータをFIFOから読み出すためのアドレスです。
