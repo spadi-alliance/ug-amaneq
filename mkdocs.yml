@@ -6,10 +6,9 @@ repo_name: ug-amaneq
 
 theme:
   name: material
-  hide:
-    - navigation
   features:
     - toc.integrate
+    - navigation.tabs
   palette:
 #    scheme: slate
     scheme: default
@@ -54,4 +53,4 @@ nav:
     - Skeleton: firmware/skeleton/skeleton.md
     - Str-LRTDC: firmware/strlrtdc/strlrtdc.md
   - Software: software/software.md
-#  - Practical Usage: practical/main.md
+  - Practical Usage: practical/practical.md
