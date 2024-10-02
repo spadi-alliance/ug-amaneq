@@ -1,0 +1,2032 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AMANEQ User Guide">
+      
+      
+        <meta name="author" content="Ryotaro Honda">
+      
+      
+      
+        <link rel="prev" href="../../skeleton/skeleton/">
+      
+      
+        <link rel="next" href="../../../software/software/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Str-LRTDC - AMANEQ User Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#streaming-low-resolution-tdc" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AMANEQ User Guide" class="md-header__button md-logo" aria-label="AMANEQ User Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AMANEQ User Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Str-LRTDC
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/spadi-alliance/ug-amaneq" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ug-amaneq
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Top
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../release/release/" class="md-tabs__link">
+        
+  
+    
+  
+  Release
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../hardware/overview/overview/" class="md-tabs__link">
+          
+  
+  Hardware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../synchronization/sync/" class="md-tabs__link">
+        
+  
+    
+  
+  Synchronization
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../overview/overview/" class="md-tabs__link">
+          
+  
+  Firmware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../software/software/" class="md-tabs__link">
+        
+  
+    
+  
+  Software
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../practical/practical/" class="md-tabs__link">
+        
+  
+    
+  
+  Practical Usage
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AMANEQ User Guide" class="md-nav__button md-logo" aria-label="AMANEQ User Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AMANEQ User Guide
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/spadi-alliance/ug-amaneq" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ug-amaneq
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Top
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Hardware
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hardware/overview/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hardware/mezzanine/mezzanine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mezzanine cards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hardware/housing/housing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Housing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hardware/diff-hul/diff-hul/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Differences in HUL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hardware/for-developers/for-developers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    For developers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../synchronization/sync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Synchronization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Firmware
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Firmware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skeleton/skeleton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Skeleton
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Str-LRTDC
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Str-LRTDC
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    <span class="md-ellipsis">
+      History
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#led-and-dip-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      LED and DIP switch
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-bus-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local bus modules
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streaming-tdc-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      Streaming-TDC block
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Streaming-TDC block">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-structure-of-streaming-tdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic structure of streaming TDC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#daq-runningidle-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAQ running/idle state
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DAQ running/idle state">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standalone-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standalone mode
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buffer-overflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Buffer overflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#online-data-processing-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      Online Data Processing block
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Online Data Processing block">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trigger-emulation-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trigger emulation mode
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-merging-block-vital-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data merging block (vital block)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#throttling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Throttling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tdc-data-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      TDC data category
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heartbeat-delimiter-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      Heartbeat delimiter category
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-address-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      Register address map
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scaler
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scaler">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-structure_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-address-map_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Register address map
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../software/software/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../practical/practical/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practical Usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="streaming-low-resolution-tdc">Streaming low-resolution TDC</h1>
+<h2 id="overview">Overview</h2>
+<p>Streaming low-resolution TDC (Str-LRTDC)は129ch入力の1ns精度連続読み出しTDCです。</p>
+<p><a href="https://github.com/AMANEQ-official/StrLrTdc">Github repository</a></p>
+<pre><code>- Unique ID:                  0x60c4
+
+- Number of inputs:           128+1
+- Timing measurements:        Both edges
+- TDC precision:              1ns
+- Double hit resolution:      ~8ns
+- Max TOT length:             4000ns
+
+- Link protocol:              SiTCP
+- Default IP:                 192.168.10.16
+- Data link speed:            1Gbps
+
+- Data word width:            64bit
+- Acceptable max input rate:  ~14MHz/board
+</code></pre>
+<h3 id="history">History</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Version</th>
+<th style="text-align: left;">Date</th>
+<th style="text-align: left;">Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">v2.5</td>
+<td style="text-align: left;">2024.6.4</td>
+<td style="text-align: left;">事実上の初期版</td>
+</tr>
+</tbody>
+</table>
+<h2 id="functions">Functions</h2>
+<figure id="_figure-1">
+<img alt="BL-DIAGRAM" id="BL-DIAGRAM" src="../block-diagram.png" width="80%" />
+<figcaption><span>Figure&nbsp;1:</span> Simplified block diagram of Str-LRTDC.</figcaption>
+</figure>
+<p><a href="#BL-DIAGRAM">図</a>はStr-LRTDCの簡易ブロックダイアグラムです。
+Main input, メザニンスロット, NIMIN-1を入力として利用し、最大129ch入力を受け付けます。
+AMANEQ本体のみで65ch入力が可能であり、129chまで拡張する場合はDCRv2メザニンカードが必要です。
+これらの入力信号は連続読み出しTDC (Str-TDC)ブロックとスケーラーブロックに接続されています。
+Str-TDCブロックでは1ns精度で信号のリーディングとトレーリングエッジのタイミングを測定し、内部で2つのエッジのペアリングを行いTOTを計算します。
+データ送信はSiTCPのTCP機能を使って行います。
+Str-TDCはトリガーレスの連続読み出しTDCですが、トリガー信号によって内部ゲートを生成し、選択的にデータを送信するオプション機能が存在します。
+TDCブロックの詳細はDAQ機能のセクションで詳しく述べます。</p>
+<p>スケーラーブロックは内部に32-bitカウンタを有しており、TDCブロックの動作とは独立に入力信号の数を数えます。
+DAQ機能が動いていない時でも、常に入力数を数え続けるフリーランのスケーラーです。
+スケーラーデータはRBCPを使ってUDPで読み出します。
+RBCPから読み出しリクエストがあるとカウンタ値をラッチして、タイムスタンプを付与してPCへ送信します。
+ユーザーはタイムスタンプを見る事で入力レートの計算をすることが出来ます。</p>
+<p>MIKUMARIポートはmini-mezzanine CRV (GN-2006-1の場合)かフロントパネルのSFPポート (GN-2006-4)につながっています。
+Str-LRTDCはクロック同期経路上のリーフノードであり、これより下流のモジュールを再同期する能力はありません。
+MIKUMARIシステムを用いずにスタンドアロンで動作させるときは、システムクロック信号のソースにローカル発振器を選択してください。</p>
+<figure id="_figure-2">
+<img alt="PORT-MAP" id="PORT-MAP" src="../port-map.png" width="80%" />
+<figcaption><span>Figure&nbsp;2:</span> Port map of Str-LRTDC</figcaption>
+</figure>
+<p><a href="#PORT-MAP">図</a>はTDC入力チャンネル番号とMIKUMARIのポート番号を示しています。
+MIKUMARIのポートはセカンダリが0番にアサインされています。</p>
+<h3 id="led-and-dip-switch">LED and DIP switch</h3>
+<p>MIKUMARIシステムを利用している場合、1-3番がすべて点灯していれば正常です。
+スタンドアロンの場合、1番と3番が点灯していれば正常です。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">LED #</th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">PLL locked</td>
+<td style="text-align: left;">全ての内部クロック信号が正常に出力されている状態です。</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">MIKUMARI (0) link up</td>
+<td style="text-align: left;">MIKUMARIポートの0番がリンクアップしている状態です。</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Ready for DAQ</td>
+<td style="text-align: left;">時刻同期が完了し、DAQを走らせられる状態である事を示します。</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">DAQ is running</td>
+<td style="text-align: left;">データ読み出し中である事を示します。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">DIP #</th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">SiTCP IP setting</td>
+<td style="text-align: left;">0: デフォルトIPを使用します <br> 1: ユーザー設定のIPを使用します (要ライセンス)。</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">NIMOUT setting</td>
+<td style="text-align: left;">0: NIMOUT-1からハートビート信号が出力されます<br>1: NIMOUT-1からLACCPがトリガー信号が出力されます</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Standalone mode</td>
+<td style="text-align: left;">0: MIKUMARIシステムを使用します<br>1: ローカル発振器を使用しスタンドアロンモードになります</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Not in use</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<!--
+- DIP1: SiTCP IP setting
+    - 0: デフォルトIPを使用します
+    - 1: ユーザー設定のIPを使用します (要ライセンス)。
+- DIP2: NIMOUT setting
+    - 0: NIMOUT-1からハートビート信号が出力されます
+    - 1: NIMOUT-1からLACCPがトリガー信号が出力されます
+- DIP3: Standalone mode
+    - 0: MIKUMARIシステムを使用します
+    - 1: ローカル発振器を使用しスタンドアロンモードになります
+- DIP4: Not in use
+-->
+
+<h2 id="local-bus-modules">Local bus modules</h2>
+<p>Str-LRTDCには6個のローカルバスモジュールが存在します。
+以下がローカルバスアドレスのマップです。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Local Module</th>
+<th style="text-align: left;">Address range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Mikumari Utility</td>
+<td style="text-align: left;">0x0000'0000 - 0x0FFF'0000</td>
+</tr>
+<tr>
+<td style="text-align: left;">Streaming TDC</td>
+<td style="text-align: left;">0x1000'0000 - 0x1FFF'0000</td>
+</tr>
+<tr>
+<td style="text-align: left;">Scaler</td>
+<td style="text-align: left;">0x8000'0000 - 0x8FFF'0000</td>
+</tr>
+<tr>
+<td style="text-align: left;">CDCE62002 Controller</td>
+<td style="text-align: left;">0xB000'0000 - 0xBFFF'0000</td>
+</tr>
+<tr>
+<td style="text-align: left;">Self Diagnosis System</td>
+<td style="text-align: left;">0xC000'0000 - 0xCFFF'0000</td>
+</tr>
+<tr>
+<td style="text-align: left;">Flash Memory Programmer</td>
+<td style="text-align: left;">0xD000'0000 - 0xDFFF'0000</td>
+</tr>
+<tr>
+<td style="text-align: left;">Bus Controller</td>
+<td style="text-align: left;">0xE000'0000 - 0xEFFF'0000</td>
+</tr>
+</tbody>
+</table>
+<h2 id="streaming-tdc-block">Streaming-TDC block</h2>
+<h3 id="basic-structure-of-streaming-tdc">Basic structure of streaming TDC</h3>
+<p>Str-HRTDCや他の連続読み出し用のファームウェアはStr-LRTDCの構造が基になっています。
+ここでは連続読み出しTDCの基本構造についてまず記述します。
+伝統的なtriggered-type DAQシステムでは、トリガー信号が基準タイミングとなり、その周辺のデータをまとめる事でイベントデータブロックを形成します。
+これがフロントエンド回路の最小データ構造になる事が多いです。
+トリガーレスDAQシステムでは、ハードウェアトリガーが存在しないため、イベントをデータブロックの単位に取る事が出来ません。
+そこで、<a href="#synchronization">Synchronization</a>のセクションで述べた時刻の構造をデータブロックにも当てはめます。
+ハートビートフレームの1周期を定義しているのは16-bitのハートビートカウンターです。
+この16-bitカウンタ値をfine-scaleのタイムスタンプ (8ns精度, 524us長)として各DAQデータワードに与えます。
+タイムスタンプとして8ns精度が不十分な場合、システムクロック周期以下の時間測定を補償するためのTDCユニットを実装して更にfine-scaleの時間情報を与えます。</p>
+<p>次にデータブロック、つまりハートビートフレームの境目を示すために、ハートビートデリミタと呼ばれる区切りデータワードをハートビート信号のタイミングで挿入します。
+ハートビートデリミタはcoarse-scaleのタイムスタンプ (524us精度, 2.4h長)である24-bit長のフレーム番号を持ちます。
+また、デリミタデータはそのフレームのステータスサマリーなども持っています。
+ハートビートデリミタはハートビートフレームの最後につきます。</p>
+<figure id="_figure-3">
+<img alt="DATA-BLOCK" id="DATA-BLOCK" src="../data-block.png" width="70%" />
+<figcaption><span>Figure&nbsp;3:</span> Heartbeat frame structure as a data block</figcaption>
+</figure>
+<p>以上の事をまとめると<a href="#DATA-BLOCK">図</a>のようになります。
+Streaming TDCはTDCデータとフレームの区切りを示すデリミタデータを連続的に送信します。</p>
+<figure id="_figure-4">
+<img alt="TDC-BLOCK" id="TDC-BLOCK" src="../strlrtdc-block.png" width="65%" />
+<figcaption><span>Figure&nbsp;4:</span> Block diagram of streaming TDC. Str-LRTDC case is shown as an example.</figcaption>
+</figure>
+<p>時刻情報はLACCPによって同期されたheartbeat unitが定義しています。
+Streaming TDCはこれを参照するだけで、heartbeat unitを制御することはありません。
+<strong>すなわち、時刻情報はDAQ機能とは独立でありフリーランで進み続けるので、DAQにとって特定の時刻基準、例えば0点、などは特に意味がありません。</strong>
+Streaming TDCはonline data processing (ODP) ブロックとデータマージングブロックで構成されます。
+歴史的な理由から、データマージングブロックをvital blockを呼ぶことがあります。</p>
+<p>ODPブロックはTDCユニットを含み、時間測定やTOTの計算などチャンネル毎の処理を固定遅延時間で行います。
+Delimiter generatorはデリミタワードを生成し各ODPチャンネルへ分配します。
+つまり、ハートビートフレームは各チャンネル毎に定義されます。
+データマージングブロックはデータリンクにデータストリームを渡すため、複数のデータパスをまとめあげ単一のデータパスにします。
+この過程で、各チャンネル毎に定義されたハートビートフレームは結合され、<a href="#DATA-BLOCK">図</a>に示すようにモジュール全体のハートビートフレームへとまとめ上げられます。
+データマージングブロックではフレーム結合時に各チャネルからやってきたTDCデータを着た順番に新しいフレーム内に並べます。
+<strong>そのため、ハートビートフレーム内のデータは時刻でそれなりにソートされていますが、順番がひっくり返っていることがあります。</strong>
+データマージングブロックはfront-mergerとback-mergerの2段構成になっており、各マージャ―内には出力FIFOが実装されています。
+Front-とback-mergerの機能はserialization factorを除けば同一です。
+2段構えになっている理由は同期的に瞬間レートが増加した時にfront-mergerでバッファするためです。</p>
+<p>連続読み出しようのFEEにはPCへデータ送信をトリガーする信号は存在しません。
+SiTCPは直前のバッファにデータがある限りデータ送信を続けます。
+Streaming TDCではハートビートフレームがデータブロックの単位であるため、検出器ヒットが全くない空のハートビートフレームも定義可能です。
+そのため、DAQ機能がONの状態では検出器入力の有り無しに関わらず、ハートビートデリミタワードは必ず送信されます。
+この点が、トリガー入力が無ければ何もデータを返さない従来のFEEとは異なる点です。</p>
+<h3 id="daq-runningidle-state">DAQ running/idle state</h3>
+<p>Streaming TDCブロックが何もデータを出力しない状態をDAQ idle状態、デリミターデータワードを含むDAQデータの生成をする状態をDAQ running状態と呼びます。
+DAQ状態はハートビートフレームのフレーム状態とデータリンク状態の積で決定されます。
+ハートビートフレームはアクティブフレームとアイドルフレームの2状態を持っており、LACCPによって管理されています。
+ユーザーが変更できるフレーム状態はクロック同期ネットワーク上のroot moduleの物だけです。
+ユーザーがroot moduleへアクセスしフレーム状態の更新を行うと、LACCPを通じて下流の全モジュールへ更新が伝達されます。
+情報の伝搬遅延の違いによって各FEE上のフレーム状態の切り替わりタイミングが異なってしまう事を避けるために、フレーム状態の分配はハートビート信号の裏打ちタイミング（バックビート）で行われ、反映は次のハートビート信号でなされます。
+現状ハートビート周期は524 usのため、root moduleから最も遠いモジュールまでの伝搬遅延が262 us以内であれば、フレーム状態の切り替わりは同時に行われます。</p>
+<p>フレーム状態はハートビート単位で切り替わりますが、TCP接続は任意のタイミングで確立するので、データリンク状態の遷移タイミングはハートビートフレームに同期していません。
+この事がDAQ状態の遷移タイミングへ影響を与えます。
+DAQ状態はOFFからONへ切り替わるときはハートビートを待って遷移しますが、ONからOFFへ切り替わる時は条件を満たさなくなったら即座に遷移します。
+この理由は、TCP接続が確立していればデータ送信開始を遅らせることはできますが、接続が切れたら最早データを送りようがないためです。
+このことから、DAQ RUN終了時には<strong>ハートビートフレームの途中でデータが途切れる</strong>事がありますが、これを問題視するかどうかはユーザーに委ねています。
+また、複数モジュールがある場合、TCP接続が確立するまでの時間は通常ばらつきます。
+そのため、DAQ RUNスタート時に各モジュールがデータ送信を開始するフレーム番号は一致するとは限りません。
+これを問題視するかどうかも、やはりユーザーに委ねています。
+<a href="#DAQ-ONOFF">図</a>はTCP接続状態でDAQ状態が決まるような運用をした場合に送信されるデータの範囲を示しています。</p>
+<figure id="_figure-5">
+<img alt="DAQ-ONOFF" id="DAQ-ONOFF" src="../daq-onoff.png" width="90%" />
+<figcaption><span>Figure&nbsp;5:</span> Data to be transferred to a PC when the DAQ state is determined by the TCP connection status.</figcaption>
+</figure>
+<p>上記の事を問題視し、DAQ状態の切り替わりをハートビートへ同期したい場合、先にTCP接続を確立させておいて後からフレーム状態をアクティブにする必要があります。DAQを止める場合は先にフレーム状態をアイドルへ変更してからTCP接続を切ります。
+この場合、各FEEのTCP接続状態を何らかの方法で監視して、すべてのTCP接続が確立したことを確認しないといけません。</p>
+<p>一方、各FEEのDAQ状態の切り替わりタイミングに頓着しない場合、先にフレーム状態を更新しておいて、後からTCP接続を確立させることができます。
+この場合、中央集権的にTCP接続状態の監視をする必要はありません。
+フレーム状態は常にアクティブで、TCP接続状態だけでDAQ状態を定義するという考え方もできます。
+SPADI-Aで開発しているNestDAQの実装では、FEEからデータがない場合タイムフレームビルドをタイムアウトする仕様になっているので、こちらの運用方式を採用しているケースが多いです。</p>
+<h4 id="standalone-mode">Standalone mode</h4>
+<p>DIPスイッチの設定によりスタンドアロンモードで動いている場合は、フレームステートは常にONです。
+TCP接続状態だけでDAQ状態が決定されます。</p>
+<h3 id="buffer-overflow">Buffer overflow</h3>
+<p>DAQ状態がrunningになるとStreaming TDCは即座にデータ送信をし始めるので、ソフト側ではTCP接続の確立後は常に読み出しを行っている事が必要です。
+もし、ソフトが何らかの理由によりデータ読み出しを行わない期間があったり、そもとも送信しようとするデータ量がリンクスピードに対して多すぎる場合、フロントエンドはバックプレッシャーを感じFPGA内のFIFOへデータがたまっていきます。
+この状態が長く続くと最上流のFIFOまでデータが一杯になり、データドロップを発生します。
+このように連続読み出し用のファームウェアではデータドロップはデータリンク以降からのプレッシャーによって発生します。
+トリガーがBUSYによってマスクされることでイベントを取得できなくなるグローバルトリガー型のDAQとはこの点が大きく異なります。
+プレッシャーが発生する理由は多岐にわたり、全FEEが同期的にデータドロップするとは限りません。
+ソフト上の高いイベント再構成効率を維持するためには、FEEのデータ収集（送信）効率は可能な限り100%を維持する必要があります。
+データリーダー、データ処理、データ書き込みを行うプロセスは分かれていることが望ましいです。
+<a href="https://github.com/spadi-alliance/hul-common-lib">hul-common-lib</a>で提供しているサンプルDAQコードではデータリードとディスク書き込みを同一プロセス内で行っていますが、あくまで簡易的な試験用であることに留意してください。</p>
+<p>バックプレッシャーにより最上流のFIFOまでデータの水面が上がってしまった場合、まずファームウェアはTDCデータの書き込みを遮断し、ハートビートデリミタの送信を優先的に行うようになります。
+これはDAQシステムにとってハートビートフレームがデータブロックと時刻の基本単位であり、これを可能な限り失わないようにするためです。
+それでもプレッシャーがかかり続けるといずれハートビートデリミタも送信できなくなるので、ファームウェアは様々な方法を使って自身を延命しようと努力します。
+データドロップの仕方や延命措置についてはthrottling機能のセクションで詳しく述べます。</p>
+<h3 id="online-data-processing-block">Online Data Processing block</h3>
+<figure id="_figure-6">
+<img alt="ODP-BLOCK" id="ODP-BLOCk" src="../odp-block.png" width="100%" />
+<figcaption><span>Figure&nbsp;6:</span> Block diagram of the online data processing block in a channel.</figcaption>
+</figure>
+<p>Online Data Processing (ODP) blockは時間測定やTOTの計算など各チャンネル毎の処理を並列に行うブロックです。
+まずtiming unitで検出器からのロジック信号の立ち上がりと立下りエッジの時間測定を行います。このユニットは16-bit fine-scale timestamp以下の精度の時間を測定を行い、その精度はファームウェアによりますが、Str-LRTDCの場合、精度は1nsです。
+両エッジの時間測定は独立に行われるので、その後の処理ためにpath mergerで1本のデータパスに統合されます。
+この段階ではTOTの計算は行われませんが、非常にパルス幅が短く立ち上がりと立下りの結果が同時にやってきた場合、ここで簡易的なTOT計算を行い立下りエッジのデータは破棄されます。
+もし、後述のペアリングモードをOFFにして立下りエッジデータを残すような処理をしていた場合でも、両エッジデータが同時にやってくるような短パルスに対しては立下りエッジのデータを残すことができません。</p>
+<p>その後データは2usの固定長ディレイバッファを通過します。
+この遅延バッファは、後述の<a href="#trigger-emulation-mode">trigger emulation mode</a>においてトリガー入力を待つための機能です。</p>
+<p>Delimiter inserterの直前で16-bit fine-scale timestampが結合され、ハートビートフレーム内における時刻が確定します。
+ハートビートのタイミングでdelimiter wordが挿入されて、各チャンネルにおけるハートビートフレームが構成されます。
+Timing unitからここまでの処理は固定長遅延で行われます。</p>
+<p>ハートビートフレームが確定したのち、立ち上がりと立下りエッジのペアリングを行います。
+Paring unitは立ち上がりデータを見つけると立下りデータが来るまで待ち、立下りデータが来た時点でTOTを計算し立下りデータを破棄します。
+結果として、立ち上がりタイミングとTOT値を含んだデータワードが次のユニットへ送られます。
+ペアリングのための最大待ち時間は4000nsで、この時間内にペアを見つけられなかった場合、TOTが0の立ち上がりデータが出力されます。
+また、連続して立ち上がりデータが来てしまった場合でも、TOTが0の立ち上がりデータが出力されます。
+いずれにせよ、TOTが0のデータは何らかの理由によりペアが見つからなかったことを意味します。
+もし、立ち上がりと立下りデータの間にデリミタワードが挟まった場合、TDCデータはデリミタワードの前に挿入されます。つまり、ハートビートフレーム内におけるTDCデータの位置は、立ち上がりデータが持つタイムスタンプで決定されます。
+ペアリング機能をオフにして、立ち上がりと立下りデータの両方を出力させることも可能ですが、データ転送量は2倍になります。</p>
+<p>その後、TDCデータはTOTフィルターを通ります。
+TOTフィルターではTOT値に対して下限と上限の閾値を設定して、その範囲に入らなかったTDCデータをフィルターアウトします。
+TOTの下限値を設定した場合TOTが0のデータは本来フィルターアウトされてしまいますが、TOTが0のデータは特殊なケースに相当するので、これを特例的に通過させるモードも実装されています。
+デフォルトではTOTフィルターはオフになっており、すべてのデータを通過させます。</p>
+<h4 id="trigger-emulation-mode">Trigger emulation mode</h4>
+<p>Streaming TDCはトリガーレスモードが基本ではありますが、データ量削減のためにハードウェアトリガーの入力を受け付けることができます。
+トリガーはNIM入力か、MIKUMARI経由で上流のモジュールから受け取ることが可能です。
+この機能をオンにしてトリガーを入力するとゲートが開き、ゲートが開いている間だけデータを下流へ送信します。
+ゲートが開いている間に次のトリガー (ベト)信号がやってきた場合、ゲート長が延長されます。
+トリガー入力からゲートを開くまでの遅延時間と、ゲート長はネットワーク経由で設定可能です。
+トリガーレスモードの場合は、このゲートが常に開いている状態に相当します。</p>
+<h3 id="data-merging-block-vital-block">Data merging block (vital block)</h3>
+<p><a href="#TDC-BLOCK">図</a>を再び参照してください。
+ODPブロックを出たデータはデータマージングブロックで1つのデータパスへシリアライズされます。
+この時、各チャンネルで定義されたハートビートフレーム同士をまとめあげて、1つのフレーム構造を再定義します。
+Merger unitのスループットは8Gbpsです。SiTCP-XGを使用している場合、back-mergerのスループットがボトルネックになります。</p>
+<p><a href="#TDC-BLOCK">図</a>中の灰色の四角はFIFOを示しています。
+Merger unitは順番にデータをまとめていくので、入力の前にFIFOがある構造になっています。
+ODPブロックからのデータを最初に受けるFIFOを特にincoming FIFOと呼びます。
+モジュールがバックプレッシャーを受けると、SiTCP直前のバッファから順番にいっぱいになっていき、incoming FIFOまでいっぱいになるとデータドロップが発生します。
+もしくは、入力レートが瞬間的に高くなった場合でもincoming FIFOはいっぱいになると、同じようにデータドロップが発生します。</p>
+<h3 id="throttling">Throttling</h3>
+<p>スロットリング機能はFPGA内のバッファが溢れそうになった時にデータ破損を防ぐための機能です。
+ここで言うデータ破損とは、ハートビートフレーム構造が失われる事を指し、例えば、デリミタを喪失して2つのフレームがくっ付いてしまった場合やいくつかのハートビートフレームを失ってしまった場合などです。
+TDCデータが失われることはデータドロップと表現し、破損ではありません。
+Streaming TDCではDAQ状態がONである限り、たとえTDCデータが存在しなくてもハートビートフレームを定義してそのデータブロックを送信し続けるため、いくつかのフレームが抜けるという事はデータが破損したことを示しています。
+FPGA内のバッファがいっぱいになってしまったときに、スロットリング機能はTDCデータを破棄してでもデリミタの喪失を避け、可能な限りPCへ届くように努力します。
+ここではスロットリングの機能について基本的な部分を述べます。スロットリングの思想など更に詳しいことについては<a href="../throttling.pdf">参考資料</a>を参照してください。</p>
+<p>FPGA内のバッファがいっぱいになる理由は大別すると3つに分けられます。</p>
+<ol>
+<li>瞬間的に入力レートが増大してマージングブロックのスループットを超えたとき</li>
+<li>PCがビジーになりバックプレッシャーがかかった時</li>
+<li>入力レートの平均値がデータリンクのスピードを超えているとき</li>
+</ol>
+<p>1番目と2番目は一時的な変化による律速です。入力データレートの平均値はデータリンクスピードより低いとします。
+いずれの場合でもデータドロップが発生するのはincoming FIFOです。
+1番目のケースではfront-mergerがincoming FIFOからデータを吸い出す速度が入力に追いつかないことでincoming FIFOが溢れ、2番目のケースでは後ろから順番にFIFOがいっぱいになっていき最終的にincoming FIFOが溢れます。
+3番目は原理的にデータを送りきれない状況で、溢れそうになった時に一時的に対処するのではなく恒久的な対処が必要です。
+これらの状況に対処するため、4つのスロットリング機能が考案され、うち3つがすでに実装されています。</p>
+<ul>
+<li>Input throttling type-1 (to be implemented)</li>
+<li>Input throttling type-2</li>
+<li>Output throttling</li>
+<li>Heartbeat frame throttling</li>
+</ul>
+<figure id="_figure-7">
+<img alt="THROT" id="THROT" src="../throttling.png" width="100%" />
+<figcaption><span>Figure&nbsp;7:</span> Block diagram of data merging block with throttling functions.</figcaption>
+</figure>
+<p>各スロットリング機能の実装位置は<a href="#THROT">図</a>のようになっており、Input throttling type-2の上流にはODPブロックが存在しています。
+Input throttlingはincoming FIFOへの流量をチャンネル毎に制限するための機能です。
+Type-2はincoming FIFOのprogrammable full flag (もうすぐFIFOがいっぱいになるとうフラグ)が立つと起動します。
+Input throttling type-2が働いている間このユニットはデリミタデータだけ通過させ、TDCデータを遮断します。
+この機能は一度起動すると該当incoming FIFOがemptyになるまで働き続けます。
+Input throttling type-1は概念だけが定義されていて未実装ですが、入力データレートが急激に増えると起動しODPブロックの2us 遅延バッファの後でデータを消去する機能です。
+Type-2のように一度メモリに書いてしまったデータが排出されるまで待つ必要が無いので高効率ではありますが、瞬間的にレートが上がったことの判断が難しいため現在は未実装です。</p>
+<p>Output throttlingはバックプレッシャーからStreaming TDCを守る機能です。
+SiTCP直前のバッファ (link buffer) のprogrammable full flagが立っているときにinput throttling type-2が働くとこの機能が起動します。
+Output throttlingユニットは働いている間back-mergerからデータを読み出して、TDCデータを破棄しつつデリミタデータのみlink bufferへ書き込みます。
+これによりデータマージングブロックのバッファに空きを作ってPCのビジー状態が解消するのを待つ猶予を作ります。
+この機能は一度起動するとlink bufferがemptyになるまで働き続けます。</p>
+<p>Heartbeat frame throttlingは3番目のケースに対応するための機能です。
+この機能はheartbeat inserterに働きかけて、2/4/8/16の倍数のフレーム番号の時だけTDCデータを通過させるようにします。
+これによって、Streaming TDCが生成するデータ量自体を絞ることができますが、一番ゆるい設定でもいきなりデータ量が50%になるので、
+何らかの理由により入力データ量を制御できない時の最終手段として利用してください。
+ビーム実験であればビームを捨てているのと同じになります。</p>
+<p>Throttling機能はFPGA内で自己判断しTDCデータを破棄する非常に強力な機能です。
+どの機能がいつ働いたのか、どれだけの量のデータを破棄したか、なるべくデータからわかるように工夫してあります。
+まず、デリミタデータ内にどの機能が働いたかを示すフラグが存在します。ただし、これはハートビートフレームごとのサマリーであるため、細かい状況まではわからないです。
+Input throttling type-2はその機能が起動したときと終了した時に、開始と終了のタイムスタンプが入った特殊データを生成します。
+ここからいつどれだけinput throttling type-2が働いたかわかるようになっていますが、あまりよく検証されていません。
+ユーザーによる検証と追記を望みます。
+また、デリミタデータはODPブロックで生成されたデータの総量と、SiTCPから送信できたデータの総量の情報を有しています。
+前者はスロットリング機能の影響を受ける前、後者は受けた後のデータ量を示しています。
+ここからそのモジュールのデータ転送効率を算出できます。</p>
+<h3 id="data-structure">Data structure</h3>
+<p>Streaming TDCのデータワードは64-bit長で、TDCデータとデリミタデータの2種類のデータカテゴリが存在します。
+TDCデータカテゴリにはleading/trailing edgeタイミングを示すいわゆるTDCデータワードと、input throttling の開始と終了を示すスロットリングデータワードが存在します。</p>
+<h4 id="tdc-data-category">TDC data category</h4>
+<pre><code>Str-LRTDC Leading/trailing data word
+MSB                                                                                                     LSB
+[    6-bit    ][    8-bit    ][        16-bit        ][          19-bit           ][       15-bit        ]
+   Data type       Channel              TOT                     TDC timing               Zero padding
+
+Throttling data word
+[    6-bit    ][    8-bit    ][        16-bit        ][        16-bit        ][          18-bit          ]
+   Data type       Channel            Reserve            Throttling timing            Zero padding
+</code></pre>
+<p>以下は先頭の6-bit data typeのリストです。
+Input throttling type-1のデータタイプは予約だけされています。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">6-bit data-type pattern</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">b001011</td>
+<td style="text-align: left;">Leading edge timing</td>
+</tr>
+<tr>
+<td style="text-align: center;">b001101</td>
+<td style="text-align: left;">Trailing edge timing</td>
+</tr>
+<tr>
+<td style="text-align: center;">b011001</td>
+<td style="text-align: left;">Input throttling type-1 start</td>
+</tr>
+<tr>
+<td style="text-align: center;">b010001</td>
+<td style="text-align: left;">Input throttling type-1 end</td>
+</tr>
+<tr>
+<td style="text-align: center;">b011010</td>
+<td style="text-align: left;">Input throttling type-2 start</td>
+</tr>
+<tr>
+<td style="text-align: center;">b010010</td>
+<td style="text-align: left;">Input throttling type-2 end</td>
+</tr>
+</tbody>
+</table>
+<p>Leading/trailing data wordではLSB精度はTOT、TDCタイミングともに1nsです。
+TOT領域は16-bit確保されていますが、最大TOT値は4000nsです。それ以上のTOT値が返ってくることはありません。
+TDCタイミング領域は内部的には16-bit fine-scale timestamp + 3-bit fine timingとなっています。</p>
+<p>Throttling data wordはinput throttlingが起動と終了した時の時刻を示しています。
+Input throttling type-2はチャンネル毎に働くため、8-bit channelの領域はleading/trailing data wordと同じ範囲の値を取ります。
+16-bit throttling timingは内部的には16-bit fine-scale timestampです。そのためLSB精度は8nsです。
+これらのデータが挿入されるタイミングを<a href="#ITHROT-T2">図</a>に示します。</p>
+<figure id="_figure-8">
+<img alt="ITHROT-TYPE2" id="ITHROT-T2" src="../ithrott-type2.png" width="70%" />
+<figcaption><span>Figure&nbsp;8:</span> Data blocked by the input throttling type-2.</figcaption>
+</figure>
+<h4 id="heartbeat-delimiter-category">Heartbeat delimiter category</h4>
+<pre><code>1st delimiter
+[    6-bit    ][ 2-bit ][       16-bit       ][       16-bit        ][              24-bit               ]
+   Data type    Reserve          Flags          LACCP fine offset            Heartbeat frame number
+
+2nd delimiter
+[    6-bit    ][ 2-bit ][       16-bit       ][           20-bit           ][           20-bit           ]
+   Data type    Reserve        User reg.        Generated data size [byte]   Transferred data size [byte]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">6-bit data-type pattern</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">b011100</td>
+<td style="text-align: left;">1st heartbeat delimiter</td>
+</tr>
+<tr>
+<td style="text-align: center;">b011110</td>
+<td style="text-align: left;">2nd heartbeat delimiter</td>
+</tr>
+</tbody>
+</table>
+<p>ハートビートデリミタワードは64-bitワードが2つ連続して128-bit長で挿入されます。
+2つのデリミタワードが分かれてしまう事はありません。
+もし連続していない場合、データ破損を起こしています。</p>
+<p>1st delimiter wordの16-bit flagsは該当ハートビートフレームにおけるDAQのステータスフラグを示します。
+以下に各ビットの意味をまとめます。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Bit</th>
+<th style="text-align: left;">Flag</th>
+<th style="text-align: left;">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">16th bit</td>
+<td style="text-align: left;">Reserve</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">15th bit</td>
+<td style="text-align: left;">Radiation URE</td>
+<td style="text-align: left;">Unrecoverable error of FPGA by radiation. FPGA reconfiguration is requested.</td>
+</tr>
+<tr>
+<td style="text-align: center;">14th bit</td>
+<td style="text-align: left;">Miku Communication error</td>
+<td style="text-align: left;">There was some kind of communication error of the MIKUMARI link in the heartbeat frame.</td>
+</tr>
+<tr>
+<td style="text-align: center;">13th bit</td>
+<td style="text-align: left;">Reserve</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">12th bit</td>
+<td style="text-align: left;">Overflow</td>
+<td style="text-align: left;">Incoming FIFO's Almost full or full flags are asserted. Unexpected data load. There is a risk of data corruption.</td>
+</tr>
+<tr>
+<td style="text-align: center;">11th bit</td>
+<td style="text-align: left;">Global HBF num mismatch</td>
+<td style="text-align: left;">The frame number received via the MIKUMARI mismatches with the local frame number. (Potentially communication error).</td>
+</tr>
+<tr>
+<td style="text-align: center;">10th bit</td>
+<td style="text-align: left;">Local HBF num mismatch</td>
+<td style="text-align: left;">Merger block combined the data block with different frame number. It indicates the data corruption.</td>
+</tr>
+<tr>
+<td style="text-align: center;">9th bit</td>
+<td style="text-align: left;">Reserve</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">8th bit</td>
+<td style="text-align: left;">Input throttling type1</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">7th bit</td>
+<td style="text-align: left;">Input throttling type2</td>
+<td style="text-align: left;">Input throttling type2 was working in this frame.</td>
+</tr>
+<tr>
+<td style="text-align: center;">6th bit</td>
+<td style="text-align: left;">Output throttling</td>
+<td style="text-align: left;">A part of data were discarded by the output throttling.</td>
+</tr>
+<tr>
+<td style="text-align: center;">5th bit</td>
+<td style="text-align: left;">HBF throttling</td>
+<td style="text-align: left;">This frame does not contain the TDC data because of the HBF throttling.</td>
+</tr>
+<tr>
+<td style="text-align: center;">4th bit</td>
+<td style="text-align: left;">Reserve</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">3rd bit</td>
+<td style="text-align: left;">Reserve</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">2nd bit</td>
+<td style="text-align: left;">Reserve</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">1st bit</td>
+<td style="text-align: left;">Reserve</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>16-bit LACCP fine offsetはLACCPが導出したfine offset値であり、16-bit符号付き整数です。
+LSBの時間精度は0.9765625 (1/1.024) psであり、Str-HRTDCのビット精度と同一です。
+デフォルトではLACCP fine offsetによってTDC値は補正されておりこの欄は0になっていますが、この補正機能をオフにすると自動補正が行われず、LACCP fine offsetがこの欄に現れます。
+ソフトウェア上ではこの値をleading/trailing timingへ<strong>加算</strong>して時刻補正を行います。
+ハートビートタイミングに近いTDCデータは場合によっては補正後に隣のフレームへ動かさないといけないことがあるので、ソフト上で補正したい場合はフレーム跨ぎの処理を正しく実装してください。</p>
+<p>Heartbeat frame numberは当該フレームのフレーム番号です。</p>
+<p>2nd delimiter wordの16-bit user reg.はPCから設定可能な任意のレジスタ値です。
+SiTCPのRBCP経由でレジスタを書き込むと、デリミタワードのこの位置に現れます。
+PCから情報をここへ書き込んでおくと、解析の時にデータベースへのキー値などとして利用する事ができます。
+ただし、ネットワーク経由で書き込むため時間精度は高くありません。</p>
+<p>20-bit generated data sizeはこのフレーム内でODPブロックが生成したデータ量を示します。
+この数値はdelimiter inserterで計算されており、各種スロットリング機能の影響を受ける前の生成データ量です。
+20-bit transferred data sizeはデータリンクまで到達したデータサイズです。
+もしFPGA内で一切のデータドロップが無い場合この値はgenerated data sizeに一致します。
+データドロップを起こす主な理由はスロットリング機能ですが、非常に入力レートが高い場合それ以外にもドロップを発生させる可能性があり、そのような場合16-bit flagsにthrottling bitが立っていなくてもtransferred data sizeのほうが小さくなることがあります。</p>
+<h3 id="register-address-map">Register address map</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Register name</th>
+<th style="text-align: left;">Address</th>
+<th style="text-align: center;">Read/Write</th>
+<th style="text-align: center;">Bit width</th>
+<th style="text-align: left;">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">kTdcMaskMainU</td>
+<td style="text-align: left;">0x1000'0000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: left;">Channel mask for 0-31ch    (default: 0x0)</td>
+</tr>
+<tr>
+<td style="text-align: left;">kTdcMaskMainD</td>
+<td style="text-align: left;">0x1010'0000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: left;">Channel mask for 32-63ch   (default: 0x0)</td>
+</tr>
+<tr>
+<td style="text-align: left;">kTdcMaskMznU</td>
+<td style="text-align: left;">0x1020'0000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: left;">Channel mask for 64-95ch   (default: 0x0)</td>
+</tr>
+<tr>
+<td style="text-align: left;">kTdcMaskMznD</td>
+<td style="text-align: left;">0x1030'0000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: left;">Channel mask for 96-127ch  (default: 0x0)</td>
+</tr>
+<tr>
+<td style="text-align: left;">kTdcMaskEx</td>
+<td style="text-align: left;">0x10E0'0000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: left;">Channel mask for 128-159ch (default: 0x0)</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">kEnBypass</td>
+<td style="text-align: left;">0x1040'0000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Enable bypass for 2-us delay buffer and paring unit. (default: 0x0) <br> 1st-bit: Enable bypass for 2-us delay buffer <br> 2nd-bit: Enable bypass for paring unit</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">kTotFilterCtrl</td>
+<td style="text-align: left;">0x1050'0000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Enable TOT filter. (default: 0x0) <br> 1st-bit: Enable TOT filter unit <br> 2nd-bit: Enable zero-TOT through mode</td>
+</tr>
+<tr>
+<td style="text-align: left;">kTotMinTh</td>
+<td style="text-align: left;">0x1060'0000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: left;">TOT filter low threshold</td>
+</tr>
+<tr>
+<td style="text-align: left;">kTotMaxTh</td>
+<td style="text-align: left;">0x1070'0000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: left;">TOT filter high threshold</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">kTrgEmuCtrl</td>
+<td style="text-align: left;">0x1080'0000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Set trigger emulation mode. (default: 0x0) <br> 1st-bit: Enable trigger gate mode <br> 2nd-bit: Enable Veto gate mode</td>
+</tr>
+<tr>
+<td style="text-align: left;">kTrgEmuDelay</td>
+<td style="text-align: left;">0x1090'0000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: left;">Set the delay from the trigger (veto) input to opening the trigger (veto) gate. LSB precision is 8ns.</td>
+</tr>
+<tr>
+<td style="text-align: left;">kTrgEmuWidth</td>
+<td style="text-align: left;">0x10A0'0000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: left;">Set the trigger (veto) gate width. LSB precision is 8ns.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">kHbfThrottCtrl</td>
+<td style="text-align: left;">0x10B0'0000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Set the heartbeat frame throttling condition. <br> 0x0: Disable (default) <br> 0x1: Only data for frame numbers that are multiples of 2 is acquired. <br> 0x2: Only data for frame numbers that are multiples of 4 is acquired. <br> 0x4: Only data for frame numbers that are multiples of 8 is acquired. <br> 0x8: Only data for frame numbers that are multiples of 16 is acquired.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">kHbdUserReg</td>
+<td style="text-align: left;">0x10C0'0000</td>
+<td style="text-align: center;">W</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: left;">The register value to be embedded to the 2nd delimiter word.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">kSelfRecoveryMode</td>
+<td style="text-align: left;">0x10D0'0000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Enable the automatic recovery process for the local heartbeat frame mismatch (default: 0x0).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>補足説明</strong></p>
+<ul>
+<li>TdcMask<ul>
+<li>TdcMaskをセットすると該当チャンネルからTDCデータが出力されなくなります。</li>
+<li>LSB側が若いチャンネル番号に対応します。</li>
+<li>Scalerへは影響を与えません。</li>
+</ul>
+</li>
+<li>EnBypass<ul>
+<li>2-us delay bufferをバイパスする機能は現状DAQ機能に何も変化を与えません。</li>
+<li>ペアリングユニットをバイパスすると立下りデータが別に返ってきます。</li>
+</ul>
+</li>
+<li>TotFilter<ul>
+<li>Zero-TOT through modeではたとえ下限値が設定されていたとしてもTOTが0のデータを例外的に通過させます。</li>
+<li>閾値設定のLSB精度はTDCと同じ1nsです。</li>
+</ul>
+</li>
+<li>TrgEmu<ul>
+<li>Trigger modeではトリガー入力によりデータを通過させるためのゲートを開きます。Veto modeではベト入力によりデータをブロックするゲートを開きます。</li>
+<li>kTrgEmuCtrlには0x3を設定できません。</li>
+</ul>
+</li>
+<li>SelfRecoveryMode<ul>
+<li>Local heartbeat frame number mismatch (delimiter flag 10th bit)が発生した時に自動復帰するプロセスを有効にします。</li>
+<li>このモードが有効の時local heartbeat frame mismatchが起きると、自動的にDAQ状態をOFFしてデータ送信を止め、データマージングブロックをリセットしてからDAQ状態をONしデータ送信を再開します。</li>
+<li>ソフトウェアからは数フレームほどデータブロックが抜けたように見えます。</li>
+</ul>
+</li>
+</ul>
+<h2 id="scaler">Scaler</h2>
+<p>スケーラーはDAQ機能とは独立にボードへのヒット入力やFPGA内部信号の数を数える機能です。
+<strong>スケーラが記録している数はボードに電源を投入してからの積算値です。</strong>
+FPGAが働きだした直後から数え始めます。
+RBCP経由でラッチリクエストを出すと、コマンドが届いたタイミングの値をラッチしてFIFOへ格納します。
+そのあとRBCP経由でFIFOから読み出しを行います。
+FIFOから読み出しを行わずに再度ラッチリクエストを発行するとデータがクラッシュします。
+前回の読み出しが成功したか定かでないときはFIFOリセットを発行してからラッチリクエストを送ってください。</p>
+<h3 id="data-structure_1">Data structure</h3>
+<p>スケーラーデータワード長は32-bitです。
+データブロックは先頭に18-word (72-byte)分のシステム情報が存在し、そのあとN-word分のヒットスケーラー値が続きます。
+データの並びは先頭から以下のようになります。</p>
+<ul>
+<li>System information (18 words)</li>
+<li>Channel-0 scaler value</li>
+<li>Channel-1 scaler value</li>
+<li>Channel-2 scaler value</li>
+<li>...</li>
+</ul>
+<p><strong>Contents of system information</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Word number</th>
+<th style="text-align: left;">Content</th>
+<th style="text-align: left;">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1st</td>
+<td style="text-align: left;">Heartbeat count</td>
+<td style="text-align: left;">16-bit fine-scale timestamp when receiving the latch request</td>
+</tr>
+<tr>
+<td style="text-align: center;">2nd</td>
+<td style="text-align: left;">Heartbeat frame number</td>
+<td style="text-align: left;">24-bit coarse-scale timestamp when receiving the latch request</td>
+</tr>
+<tr>
+<td style="text-align: center;">3rd</td>
+<td style="text-align: left;">Real time</td>
+<td style="text-align: left;">Time elapsed after power-on</td>
+</tr>
+<tr>
+<td style="text-align: center;">4th</td>
+<td style="text-align: left;">Daq run time</td>
+<td style="text-align: left;">Total run time while the DAQ state is running</td>
+</tr>
+<tr>
+<td style="text-align: center;">5th</td>
+<td style="text-align: left;">Total throttling time</td>
+<td style="text-align: left;">Total time while any of throttling functions are running</td>
+</tr>
+<tr>
+<td style="text-align: center;">6th</td>
+<td style="text-align: left;">Input throttling type-1 time</td>
+<td style="text-align: left;">Total time while input throttling type-1 is running</td>
+</tr>
+<tr>
+<td style="text-align: center;">7th</td>
+<td style="text-align: left;">Input throttling type-2 time</td>
+<td style="text-align: left;">Total time while input throttling type-2 is running</td>
+</tr>
+<tr>
+<td style="text-align: center;">8th</td>
+<td style="text-align: left;">Output throttling time</td>
+<td style="text-align: left;">Total time while output throttling is running</td>
+</tr>
+<tr>
+<td style="text-align: center;">9th</td>
+<td style="text-align: left;">Hbf throttling time</td>
+<td style="text-align: left;">Total time while heartbeat frame throttling is running</td>
+</tr>
+<tr>
+<td style="text-align: center;">10th</td>
+<td style="text-align: left;">Mikumari error number</td>
+<td style="text-align: left;">The number of communication error happened in the MIKUMARI link</td>
+</tr>
+<tr>
+<td style="text-align: center;">11th</td>
+<td style="text-align: left;">Trigger request</td>
+<td style="text-align: left;">The number of trigger inputs</td>
+</tr>
+<tr>
+<td style="text-align: center;">12th</td>
+<td style="text-align: left;">Trigger rejected</td>
+<td style="text-align: left;">The number of rejected trigger inputs</td>
+</tr>
+<tr>
+<td style="text-align: center;">13th</td>
+<td style="text-align: left;">Reserve</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">14th</td>
+<td style="text-align: left;">Reserve</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">15th</td>
+<td style="text-align: left;">Reserve</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">16th</td>
+<td style="text-align: left;">Reserve</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">17th</td>
+<td style="text-align: left;">Reserve</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">18th</td>
+<td style="text-align: left;">Reserve</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>先頭2ワードがラッチリクエスト到達時刻を示しています。
+この値を頼りにして差分を取り、レート計算を行ってください。</p>
+<p>Real time, daq run time, throttling timeにおける1-bitの時間単位は1 heartbeat periodです。
+積算時間が1 heartbeat長に満たない間はカウントは増えません。</p>
+<p>MIKUMARIの通信エラー数は電源投入からリンク確立前の間に多少増える事があります。
+リンク確立後に増加しているかどうかを差分を取って確認してください。</p>
+<p>Trigger requestとtrigger rejectedは時刻同期用のファームウェアでのみ有効な機能です。
+時刻同期ネットワークのroot-moduleはトリガーを受信するとMIKUMARI経由で下流モジュールへトリガーパルスを送信しますが、MIKUMARIは極めて近接した2パルスを送る事が出来ません。
+Trigger requestはroot-moduleへ入力されたトリガー数、trigger rejectedは下流モジュールへ送信できなかったトリガー数を示します。
+Str-LRTDCではこの欄は0です。</p>
+<h3 id="register-address-map_1">Register address map</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Register name</th>
+<th style="text-align: left;">Address</th>
+<th style="text-align: center;">Read/Write</th>
+<th style="text-align: center;">Bit width</th>
+<th style="text-align: left;">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">kAddrScrReset</td>
+<td style="text-align: left;">0x80000000</td>
+<td style="text-align: center;">W</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Reset signals <br> 0x1: Local reset <br> 0x2: Global reset <br> 0x4: FIFO reset</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrLatchCnt</td>
+<td style="text-align: left;">0x80100000</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Send latch request</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrNumCh</td>
+<td style="text-align: left;">0x80200000</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: left;">Number of words of scaler data block including system information (unit: words)</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrStatus</td>
+<td style="text-align: left;">0x80300000</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: left;">Scaler unit status</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrReadFIFO</td>
+<td style="text-align: left;">0x81000000</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Address to read data from FIFO</td>
+</tr>
+</tbody>
+</table>
+<p><strong>補足説明</strong></p>
+<ul>
+<li>AddrScrReset<ul>
+<li>Local resetはアクセス先のスケーラーカウントのリセットを行います。</li>
+<li>Global resetはアクセス先のスケーラーカウントをリセットし、さらにMIKUMARIリンク経由でスケーラーリセット信号を下流モジュールへ送信します。MikuClockRootファームウェアでのみ有効な機能です。</li>
+<li>FIFO resetはアクセス先のFIFOの中身をリセットします。</li>
+</ul>
+</li>
+<li>LatchCnt<ul>
+<li>このアドレスへ読み出しアクセスをするとラッチリクエストになります。</li>
+</ul>
+</li>
+<li>NumCh<ul>
+<li>スケーラーデータブロックのワード数はファームウェアによって異なるので、何ワード読み出したらよいか知るためのレジスタです。読むべきワード数が得られます。</li>
+</ul>
+</li>
+<li>Status<ul>
+<li>1st-bit: FIFO empty</li>
+<li>others: Reserved</li>
+</ul>
+</li>
+<li>ReadFIFO<ul>
+<li>1-byteずつデータをFIFOから読み出すためのアドレスです。</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      KEK IPNS
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["toc.integrate", "navigation.tabs"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>

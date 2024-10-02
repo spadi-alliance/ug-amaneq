@@ -1,0 +1,1305 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AMANEQ User Guide">
+      
+      
+        <meta name="author" content="Ryotaro Honda">
+      
+      
+      
+        <link rel="prev" href="../../firmware/strlrtdc/strlrtdc/">
+      
+      
+        <link rel="next" href="../../practical/practical/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Software - AMANEQ User Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#software" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AMANEQ User Guide" class="md-header__button md-logo" aria-label="AMANEQ User Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AMANEQ User Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Software
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/spadi-alliance/ug-amaneq" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ug-amaneq
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Top
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../release/release/" class="md-tabs__link">
+        
+  
+    
+  
+  Release
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../hardware/overview/overview/" class="md-tabs__link">
+          
+  
+  Hardware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../synchronization/sync/" class="md-tabs__link">
+        
+  
+    
+  
+  Synchronization
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../firmware/overview/overview/" class="md-tabs__link">
+          
+  
+  Firmware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Software
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../practical/practical/" class="md-tabs__link">
+        
+  
+    
+  
+  Practical Usage
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AMANEQ User Guide" class="md-nav__button md-logo" aria-label="AMANEQ User Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AMANEQ User Guide
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/spadi-alliance/ug-amaneq" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ug-amaneq
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Top
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release/release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Hardware
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/overview/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/mezzanine/mezzanine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mezzanine cards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/housing/housing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Housing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/diff-hul/diff-hul/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Differences in HUL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/for-developers/for-developers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    For developers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../synchronization/sync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Synchronization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Firmware
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Firmware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firmware/overview/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firmware/skeleton/skeleton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Skeleton
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firmware/strlrtdc/strlrtdc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Str-LRTDC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Software
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Software
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hul-common-lib" class="md-nav__link">
+    <span class="md-ellipsis">
+      hul-common-lib
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="hul-common-lib">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#executable-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Executable files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Executable files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#write_register" class="md-nav__link">
+    <span class="md-ellipsis">
+      write_register
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_register" class="md-nav__link">
+    <span class="md-ellipsis">
+      read_register
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_spi_device" class="md-nav__link">
+    <span class="md-ellipsis">
+      check_spi_device
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erase_eeprom" class="md-nav__link">
+    <span class="md-ellipsis">
+      erase_eeprom
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flash_memory_programmer" class="md-nav__link">
+    <span class="md-ellipsis">
+      flash_memory_programmer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gen_user_reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      gen_user_reset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inject_sem_error" class="md-nav__link">
+    <span class="md-ellipsis">
+      inject_sem_error
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcs_converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      mcs_converter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_scr" class="md-nav__link">
+    <span class="md-ellipsis">
+      read_scr
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_sem" class="md-nav__link">
+    <span class="md-ellipsis">
+      read_sem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_xadc" class="md-nav__link">
+    <span class="md-ellipsis">
+      read_xadc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reconfig_fpga" class="md-nav__link">
+    <span class="md-ellipsis">
+      reconfig_fpga
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reset_sem" class="md-nav__link">
+    <span class="md-ellipsis">
+      reset_sem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reset_sitcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      reset_sitcp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#send_cbtinit" class="md-nav__link">
+    <span class="md-ellipsis">
+      send_cbtinit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_cdce62002" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_cdce62002
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_ctrl_eeprom" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_ctrl_eeprom
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_hbfstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_hbfstate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_max1932" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_max1932
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_sitcpreg" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_sitcpreg
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show_laccp" class="md-nav__link">
+    <span class="md-ellipsis">
+      show_laccp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show_mikumari" class="md-nav__link">
+    <span class="md-ellipsis">
+      show_mikumari
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strdaq" class="md-nav__link">
+    <span class="md-ellipsis">
+      strdaq
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify_mcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      verify_mcs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#daq-data-taking" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAQ data taking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amaneq-soft" class="md-nav__link">
+    <span class="md-ellipsis">
+      amaneq-soft
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="amaneq-soft">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#str-lrtdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Str-LRTDC
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Str-LRTDC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set_tdcmask" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_tdcmask
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practical/practical/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practical Usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="software">Software</h1>
+<p>ここではRBCP経由でAMANEQをスロー制御するためのソフトウェアについて述べます。
+SPADI-Aで開発中のNestDAQソフトウェアについては、NestDAQのユーザーガイドを参照してください。</p>
+<h2 id="hul-common-lib">hul-common-lib</h2>
+<p><a href="https://github.com/spadi-alliance/hul-common-lib">Github repository</a></p>
+<p>hul-common-libはHULのファームウェアをベースにして開発されたも回路用の共通ライブラリです。
+AMANEQ、CIRASAME、RAYRAWの制御はこの共通ライブラリで行う事が可能です。
+<strong>非常に残念ながらHULは古いソフトから移行が済んでおらず、現在hul-common-libではHULファームウェアの制御は出来ません。</strong></p>
+<p><strong>Directory structure</strong></p>
+<pre><code>.
+└── hul-common-lib/
+    ├── HulCore
+    └── Common
+</code></pre>
+<p>HulCoreにはRBCP通信を行うクラス等、共通のライブラリメソッドが格納されています。
+コンパイルするとこの部分をまとめたshared libraryが生成されます。
+後述するamaneq-softは、このshared libraryを必要とします。</p>
+<p>Common内にはいくつか実行体を作るためのソースファイルが格納されています。
+生成される実行体で、AMANEQの制御は全て行う事が出来るようになっています。
+他のソフトへ制御シーケンスを移植する際には、これらソースファイルの記述を参考にしてください。</p>
+<h3 id="executable-files">Executable files</h3>
+<p>hul-common-libをコンパイルすると生成される実行体について説明します。
+<strong>全ての実行体は引数無しで実行するとusageが表示されます。</strong>
+取るべき引数を確認するために活用してください。</p>
+<h4 id="write_register">write_register</h4>
+<p>SiTCPのRBCP経由でlocal bus moduleへレジスタを書き込むための実行体です。RBCP通信クラスを包含しています。
+<code>write_register</code>と<code>read_register</code>の2種類でAMANEQのファームウェアは全て制御できるようになっていますが、制御手順が非常に煩雑な機能については別途実行体を用意しています。</p>
+<p>IPアドレス192.168.10.16のローカルアドレス0x40100000へ0x1Aという値を2-byte幅で書き込む例です。</p>
+<pre><code class="language-shell">               [IP]          [Addr]      [val] [bytes]
+write_register 192.168.10.16 0x40100000  0x1A  2
+</code></pre>
+<p>この関数は4-byte書き込みまで対応しています。
+RBCPは本来1-byte幅でしか同じアドレスに書けないのですが、プログラムの中で同一ローカルアドレスに対して他バイトの値を書き込んでいるように見せかけています。</p>
+<p>レジスタ長が8-bitの倍数でない場合、例えば13-bit幅のレジスタに2-byte書き込みを行った場合、存在しない上位3-bit部分の値は何を入れても無視されます。</p>
+<h4 id="read_register">read_register</h4>
+<p>SiTCPのRBCP経由でlocal bus moduleからレジスタを読み出すための実行体です。
+読み出し結果は標準出力へ表示されます。</p>
+<p>IPアドレス192.168.10.16のローカルアドレス0x40100000から2-byte幅で値を読み出す例です。</p>
+<pre><code class="language-shell">              [IP]          [Addr]     [bytes]
+read_register 192.168.10.16 0x40100000 2
+</code></pre>
+<h4 id="check_spi_device">check_spi_device</h4>
+<p>ボード上のSPIフラッシュメモリの型番を調べます。マニュファクチャIDをメモリから読み出して判別しているので、正常に読み出せていてもソフト側がそれを知らないとunknownと表示されてしまいます。
+そのような現象に遭遇したらgithub repositoryでissueを挙げていください。</p>
+<h4 id="erase_eeprom">erase_eeprom</h4>
+<p>SiTCPのライセンスやIPアドレスなどの情報が格納されている不揮発性メモリ（EEPROM）のデータを全消去する実行体です。
+<a href="https://hul-official.gitlab.io/hul-ug/practical/main/">SiTCPのTCP接続が再接続の際に非常に待たされる</a>という現象を解決するために必要な実行体です。
+通常は使用しません。</p>
+<h4 id="flash_memory_programmer">flash_memory_programmer</h4>
+<p>MCSファイルをSiTCP経由でフラッシュメモリに書くための実行体です。
+通常MCSファイルはJTAG経由でフラッシュメモリへ書き込みますが、ローカルバスモジュールのFMPを経由して書き込むためのプログラムです。
+当然ですが、FMPが実装されたファームウェアがFPGA上で動いている事が前提条件です。</p>
+<p>フラッシュメモリの消去、書き込み、ベリファイとJTAGで書き込むときと同じ手順を踏みます。
+ベリファイの結果最後に<code>MCS is verified</code>と表示されることを確認してください。
+Mismatchと表示された場合、通信エラー等で書き込んだデータと読み出したデータが一致していません。
+Verifiedと表示されるまで繰り返し書き込んでください。
+Mismatchと表示されているのに電源を落としたりFPGAをリコンフィグしてしまったりすると、ボードが起動しなくなります。
+その場合はJTAGケーブルを使って対処してください。</p>
+<p>RBCPを用いて数MBあるファイルを送信するので、何度もRBCP通信が行われます。
+RBCPはUDP通信のためパケットロスの可能性があり、ネットワークが不安定だったり、他の通信パケットが沢山流れている環境だと失敗しやすいです。
+また、無線経由でも失敗しやすいです。
+<code>flash_memory_programmer</code>を使う際には、他のプログラムから該当AMANEQへアクセスするのをやめ、クリーンな状況で書き込んでください。</p>
+<p>MCSをフラッシュメモリへ書き込んでもFPGAの中身はそのままです。
+書いた内容をFPGAへ反映させるためにはボードの電源を一度落とすか、<code>reconfig_fpga</code>を実行してFPGAを再コンフィグしてください。</p>
+<h4 id="gen_user_reset">gen_user_reset</h4>
+<p>Local Bus ControllerからBCTリセットを発行します。
+FPGA内部の多くのローカルバスモジュールがリセットされるのでレジスタの再設定を行ってください。</p>
+<h4 id="get_version">get_version</h4>
+<p>ファームウェアのIDとバージョンを取得します。
+何かおかしいと思った時にとりあえず実行するプログラムです。</p>
+<h4 id="inject_sem_error">inject_sem_error</h4>
+<p>開発者向けのデバッグツールです。SEMを通じて任意の領域にエラーを発生させるために使います。ユーザー向けの機能ではないのでここでは説明を省略します。</p>
+<h4 id="mcs_converter">mcs_converter</h4>
+<p>MCSからSPIフラッシュに書き込むためのバイナリファイルを作成します（MCSはテキストファイル）。<code>flash_memory_programmer</code>内ではバイナリ変換を同時に行っているので、このプログラムはデバッグ時以外に使うことは無いと思います。
+Vivadoが生成するとBINファイルと一致するかどうかは調べていません。誰か調べてください。</p>
+<h4 id="read_scr">read_scr</h4>
+<p>スケーラーを読み出し、その結果をバイナリデータファイルへ保存する実行体です。
+読み出しバイト数の取得、FIFOが空である事の確認（およびFIFOリセット）、ラッチリクエストの送信、FIFO読み出し、ファイル書き出し、の一連のプロセスを実行します。</p>
+<p>以下の例では指定したIPアドレスのボードから読み出した結果をscaler.datへ保存します。引数の数が2つだと上書きモード、3つだと追記モードで動作します。追記モードでは既にファイルが存在する時、前のデータを消さずに追記します。</p>
+<pre><code class="language-shell">read_scr 192.168.10.16 scaler.dat      (Overwrite mode)
+read_scr 192.168.10.16 scaler.dat 1    (Append mode)
+</code></pre>
+<p>繰り返しスケーラー読み出しをする場合、この実行体をシェルスクリプトで何度も呼び出してもあまり高い周波数で読めません。
+プログラムを実行するオーバーヘッドがかさんだり、プログラム内で毎回読み出しバイト数を確認していたりするためです。
+高速に何度も読み出したい場合、この実行体のソースコードを参考にして自分でプログラムを書いてください。</p>
+<h4 id="read_sem">read_sem</h4>
+<p>SEMにアクセスしてSEUを修正した回数、修正不可能な状態になっていないかの確認を行います。
+放射線が気になる環境では定期的に読み出して、修正不能なエラーが発生していないか確認してください。
+もし、<code>uncorrectable_error</code>フラグが立っていたらFPGAを再コンフィグしてください。</p>
+<h4 id="read_xadc">read_xadc</h4>
+<p>XADCにアクセスしてFPGAの温度と電源電圧値を取得します。</p>
+<h4 id="reconfig_fpga">reconfig_fpga</h4>
+<p>SPIフラッシュメモリからFPGAを再コンフィグする命令を送信します。FPGA即座にダウンするのでRBCP通信のタイムアウトが発生しますが、正常な動作です。
+10秒程度してから再アクセスしてください。</p>
+<h4 id="reset_sem">reset_sem</h4>
+<p>SEMの状態をリセットします。SEUを修正た回数も0に戻ります。</p>
+<h4 id="reset_sitcp">reset_sitcp</h4>
+<p>SiTCPコアのリセットを行います。</p>
+<h4 id="send_cbtinit">send_cbtinit</h4>
+<p>MIKUMARIリンクの物理層をリセットします。デバッグ以外の用途では使用しません。</p>
+<h4 id="set_cdce62002">set_cdce62002</h4>
+<p>CDCE62002 ICへレジスタを書き込むための実行体です。
+AMANEQが納品されたら必ず1度実行する必要があるプログラムです。
+CDCE62002には多数のパラメータがあり、1つ1つ手動で設定するのはユーザーには難しいので、いくつかのプリセットを用意しています。
+どのようなプリセットがあるかはプログラムのusageに書いてあります。</p>
+<p>以下は125 MHz入力から500 MHzと125 MHzの出力を作るための設定を書き込む時の例です。</p>
+<pre><code class="language-shell">set_cdce62002 192.168.10.16 in_125_out_500_125
+</code></pre>
+<p>書き込みを行った後、レジスタリードバックを行っています。
+この時0でない値が返ってきている事を確認してください。もしなんどやっても0が返ってくる場合、何かトラブルがあるかもしれません。</p>
+<h4 id="set_ctrl_eeprom">set_ctrl_eeprom</h4>
+<p>EEPROMへ制御レジスタを書き込みます。デバッグ以外では使用しません。</p>
+<h4 id="set_hbfstate">set_hbfstate</h4>
+<p>MikuClockRootおよびMikuClockHubに対して使用する実行体です。
+ハートビートフレーム状態のON/OFFを切り替えます。LACCPを通じてフレーム状態は下流の全てのモジュールに伝搬します。</p>
+<p>第2引数に<code>on/off</code>を入力して状態を変更してください。</p>
+<pre><code class="language-shell">set_hbfstate 192.168.10.16 on
+set_hbfstate 192.168.10.16 off
+</code></pre>
+<p>MIKUMARI Utilityが<code>0x0000'0000-0x0FFF'0000</code>のアドレス範囲に存在しないファームウェアでは、第3引数にアドレスオフセットを与えてください。</p>
+<h4 id="set_max1932">set_max1932</h4>
+<p>AMANEQでは使用しない機能です。CIRASAMEとRAYRAW上のAPDバイアスチップへレジスタを送信するために使います。</p>
+<h4 id="set_sitcpreg">set_sitcpreg</h4>
+<p>SiTCPの予約レジスタ領域にアクセスしてSiTCPのパラメータを書き換えます。
+SiTCPの説明書をよく読んで使用してください。</p>
+<h4 id="show_laccp">show_laccp</h4>
+<p>LACCPのリンク状況と、自身の時刻オフセットを調べる機能です。</p>
+<p><code>-- Link Up status --</code>はLACCPのリンクアップ状態を示すビット列です。
+ファームウェアによっては複数のLACCPが動いているので、全て1列に表示しています。
+ビット位置がポート番号に対応しており、ポート番号とボード上の位置は各ファームウェアの記述を参照してください。
+1でLACCPがリンクアップしている事を示します。</p>
+<p><code>-- My Offset --</code>はそのファームウェアのセカンダリLACCPの情報を示します。つまり、受信ポートです。
+Heartbeat count offsetはMIKUMARIパルスの往復時間をシステムクロックのunit interval 精度で示しています。
+ファイバーが長くなると大きくなる数字です。
+Local fine offsetとLACCP fine offsetは1つ上流のモジュールと最上流のモジュールに対するクロック信号の位相差をそれそれ示しています。</p>
+<p><code>Partner IP address</code>の項目では相手側のボードのIPアドレスををポート番号ごとに表示しています。</p>
+<h4 id="show_mikumari">show_mikumari</h4>
+<p>MIKUMARIリンクの状況を詳細に調べるための実行体です。何か問題がある時に使う事が多いと思います。</p>
+<p><code>-- Link Up Status --</code>では物理層（CBT）、リンク層（MIKUMARI）、時刻同期層（LACCP）の接続状態を一覧できます。
+途中まではアップしているのに上位プロトコルがアップしていないときは、ファイバーの抜き差しなどをトライしてみるといいでしょう。</p>
+<h4 id="strdaq">strdaq</h4>
+<p>TCP接続を行いデータを収集するためのプログラムです。<strong>動作確認用の非常に簡易的なプログラムであり、このソースコードを移植して独自のDAQソフトウェアを作る事は推奨しません。</strong>
+このプログラムを実行するには<code>data</code>ディレクトリを作成しておく必要があります。</p>
+<pre><code class="language-shell">       [IP]          [RUN no.]
+strdaq 192.168.10.16 1
+</code></pre>
+<p>上記の例ではrun1.datというファイルが<code>data</code>ディレクトリ以下に生成されます。
+プログラムを止めるためには<code>Ctrl-C</code>を押下してください。</p>
+<h4 id="verify_mcs">verify_mcs</h4>
+<p>SPIフラッシュメモリからデータを読み出して、比較対象のMCSファイルと一致するかどうかを確認します。
+<code>flash_memory_programmer</code>に組み込まれているプロセスですが、確認だけしたい時に使います。</p>
+<h3 id="daq-data-taking">DAQ data taking</h3>
+<p>連続読み出しDAQではロスレスでデータをPCが受け取る事が前提なので、トリガー型DAQのときよりもソフトウェアのパフォーマンスが重要になります。
+ソケットからのデータ受信、処理、ファイル書き込みはそれぞれ独立したプロセスである事が望ましく、また各プロセス間はqueueing bufferで接続されている事が必要です。
+つまり、それなりにちゃんと設計されたソフトウェアが必要です。
+<code>strdaq</code>実行体はこれらを全て1つのプロセス内で行っています。<strong>strdaqプログラムを使って物理実験を行う事は全く推奨しません。</strong></p>
+<p>イベント毎にデータを読み出していたHULと異なり、連続的にデータが返ってくるAMANEQではDAQ読み出しプログラムはかなり簡素になりました。
+実際にソースを見てもらうと分かりますが、TCP接続を確立して、ソケットを読んで、データをファイル書き込みしているだけです。
+他には何もしていません。
+そのため、わざわざ<code>strdaq</code>プログラムを使う必要性も薄く、正直なところ簡易的な試験であれば<code>nc</code>コマンドをリダイレクトした方がいいかもしれません。</p>
+<h2 id="amaneq-soft">amaneq-soft</h2>
+<p><a href="https://github.com/spadi-alliance/amaneq-soft">Github repository</a></p>
+<p>hul-common-libに共通化できなかった各ファームウェア固有の機能をまとめたものです。
+コンパイルするためには先にhul-common-libをインストールしている必要があります。</p>
+<h3 id="str-lrtdc">Str-LRTDC</h3>
+<h4 id="set_tdcmask">set_tdcmask</h4>
+<p>Str-LRTDCはTDCマスクをセットするためのレジスタが5つもあり、個別にセットすると大変なのでまとめて設定するための実行体です。
+例えば、16-31chと64-79chにマスクを設定したい場合以下のようになります。</p>
+<pre><code class="language-shell">set_tdcmask 192.168.10.16 0xffff0000 0x0 0xffff 0x0 0x0
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      KEK IPNS
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["toc.integrate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>
