@@ -70,8 +70,8 @@ Str-LRTDCの機能とスケーラー機能についてはStr-LRTDCのページ�
 |LED #||Comment|
 |:----:|:----|:----|
 |1| DAQ is running| データ読み出し中である事を示します。 |
-|2| Root mode| ROOT modeでモジュールが起動していると点灯します。 |
 |3| MIKUMARI (16) link up| MIKUMARIポートの16番がリンクアップしている状態です。 |
+|2| Root mode| ROOT modeでモジュールが起動していると点灯します。 |
 |4| PLL locked| 全ての内部クロック信号が正常に出力されている状態です。 |
 
 |DIP #||Comment|
