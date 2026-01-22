@@ -225,7 +225,7 @@ MSB                                                                             
    Data type       Channel                 TOT                                TDC timing
 
 Throttling data word
-[    6-bit    ][    7-bit    ][        16-bit        ][        16-bit        ][          18-bit          ]
+[    6-bit    ][    7-bit    ][        22-bit        ][        16-bit        ][          13-bit          ]
    Data type       Channel            Reserve            Throttling timing            Zero padding
 ```
 
