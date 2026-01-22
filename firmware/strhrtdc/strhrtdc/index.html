@@ -1,0 +1,2511 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AMANEQ User Guide">
+      
+      
+        <meta name="author" content="Ryotaro Honda">
+      
+      
+      
+        <link rel="prev" href="../../strlrtdc-10g/strlrtdc-10g/">
+      
+      
+        <link rel="next" href="../../clockroot/clockroot/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Str-HRTDC - AMANEQ User Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#streaming-high-resolution-tdc" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AMANEQ User Guide" class="md-header__button md-logo" aria-label="AMANEQ User Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AMANEQ User Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Str-HRTDC
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/spadi-alliance/ug-amaneq" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ug-amaneq
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Top
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../release/release/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Release
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../hardware/overview/overview/" class="md-tabs__link">
+          
+  
+  
+  Hardware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../synchronization/sync/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Synchronization
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../overview/overview/" class="md-tabs__link">
+          
+  
+  
+  Firmware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../software/software/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Software
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../practical/practical/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Practical Usage
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AMANEQ User Guide" class="md-nav__button md-logo" aria-label="AMANEQ User Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AMANEQ User Guide
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/spadi-alliance/ug-amaneq" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ug-amaneq
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Top
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/release/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hardware
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hardware/overview/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hardware/mezzanine/mezzanine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mezzanine cards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hardware/housing/housing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Housing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hardware/diff-hul/diff-hul/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Differences in HUL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hardware/for-developers/for-developers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For developers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../synchronization/sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Synchronization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Firmware
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skeleton/skeleton/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strlrtdc/strlrtdc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Str-LRTDC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strlrtdc-10g/strlrtdc-10g/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Str-LRTDC-10G
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Str-HRTDC
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Str-HRTDC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        History
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#led-and-dip-switch-20250106" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LED and DIP switch (2025.01.06)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-bus-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local bus modules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module reset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streaming-tdc-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Streaming-TDC block
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Streaming-TDC block">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-receiver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Receiver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-merging-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data merging block
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clock-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clock synchronization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#throttling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Throttling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tdc-data-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TDC data category
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heartbeat-delimiter-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heartbeat delimiter category
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-address-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register address map
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaler
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scaler">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#register-address-map_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register address map
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mikumari-utility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mikumari Utility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mikumari Utility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#register-address-map_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register address map
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#daq-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DAQ Controller
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DAQ Controller">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#register-address-map_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register address map
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#io-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IO Manager
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clockroot/clockroot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MikuCLockRoot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clockhub/clockhub/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MikuCLockHub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../software/software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../practical/practical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practical Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="streaming-high-resolution-tdc">Streaming high-resolution TDC</h1>
+<h2 id="overview">Overview</h2>
+<p>Streaming high-resolution TDC (Str-HRTDC)は20ps精度の連続読み出しTDCです。
+専用のメザニンカードであるmezzanine HR-TDCカードが必要で、メザニン上のFPGAとAMANEQ本体のFPGAが連携して動作する事で1つのモジュールとして動作します。
+それぞれのファームウェアを区別するときはAMANEQ側をStr-HRTDC Base、メザニン側Mezzanine (Mzn) Str-HRTDCと表記します。</p>
+<p><a href="https://github.com/AMANEQ-official/StrHrTdcBase">Github repository (AMANEQ)</a></p>
+<p><a href="https://github.com/AMANEQ-official/MznStrHrTdc">Github repository (Mezzanine)</a></p>
+<pre><code>- Unique ID (AMANEQ):         0xC480
+- Unique ID (Mezzanine):      0x804c
+
+- Number of inputs:           64
+- Timing measurements:        Both edges
+- TDC precision:              ~23ps
+- Double hit resolution:      ~2ns
+- Max TOT length:             4000ns
+
+- Link protocol:              SiTCP-XG
+- Default IP:                 192.168.10.10
+- Data link speed:            10Gbps
+
+- Data word width:            64bit
+- Acceptable max input rate:  ~125MHz/board
+- System clock freq.:         125MHz
+</code></pre>
+<h3 id="history">History</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Version</th>
+<th style="text-align: left;">Date</th>
+<th style="text-align: left;">Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">AMANEQ</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">v2.A</td>
+<td style="text-align: left;">2025.10.14</td>
+<td style="text-align: left;">- 125 MHz system clock signal can be output from NIM-OUT ports by selecting it via IOM.</td>
+</tr>
+<tr>
+<td style="text-align: center;">v2.9</td>
+<td style="text-align: left;">skipped</td>
+<td style="text-align: left;">- Bugfix version of v2.8.  <br> - Fixed the bug breaking the data structure when using only upper mezzanine card.</td>
+</tr>
+<tr>
+<td style="text-align: center;">v2.8</td>
+<td style="text-align: left;">2025.5.28</td>
+<td style="text-align: left;">- Bugfix version of v2.7.  <br> - A clock signal of 7.8125 MHz, divided by 16 from the system clock, can now be output from the NIM output port.</td>
+</tr>
+<tr>
+<td style="text-align: center;">v2.7</td>
+<td style="text-align: left;">2025.3.5</td>
+<td style="text-align: left;">- Bugfix version of v2.6.</td>
+</tr>
+<tr>
+<td style="text-align: center;">v2.6</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Not working correctly with bug</td>
+</tr>
+<tr>
+<td style="text-align: center;">v2.5</td>
+<td style="text-align: left;">2025.1.6</td>
+<td style="text-align: left;">- Updating LACCP (v2.1) supporting the frame flag distribution. <br> - Introducing gated scaler.</td>
+</tr>
+<tr>
+<td style="text-align: center;">v2.4</td>
+<td style="text-align: left;">2024.6.4</td>
+<td style="text-align: left;">事実上の初期版</td>
+</tr>
+<tr>
+<td style="text-align: center;">Mezzanine</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">v2.9</td>
+<td style="text-align: left;">2025.10.14</td>
+<td style="text-align: left;">- Fixed the bit position of the frameFlag1/2 swapped in the heartbeat delimiter flags.</td>
+</tr>
+<tr>
+<td style="text-align: center;">v2.8</td>
+<td style="text-align: left;">2025.5.28</td>
+<td style="text-align: left;">- Bugfix version of v2.7. <br> - Fixed the bug that the delay function for the trigger assisted mode does not work.</td>
+</tr>
+<tr>
+<td style="text-align: center;">v2.7</td>
+<td style="text-align: left;">2025.3.5</td>
+<td style="text-align: left;">- Bugfix version of v2.6. <br> - Enabling the function to generate data words with input throttling type-2 start/end data types. <br> - Fixed a bug that caused the same data to be duplicated in rare cases when a narrow pulse was entered.</td>
+</tr>
+<tr>
+<td style="text-align: center;">v2.6</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Not working correctly with bug</td>
+</tr>
+<tr>
+<td style="text-align: center;">v2.5</td>
+<td style="text-align: left;">2025.1.6</td>
+<td style="text-align: left;">- Updating LACCP (v2.1) supporting the frame flag distribution. <br> - Introducing gated scaler. <br> - Introducing IO manager block arranging input/output paths to the NIM IO. <br> - Deprecating DIP2 function.</td>
+</tr>
+<tr>
+<td style="text-align: center;">v2.4</td>
+<td style="text-align: left;">2024.6.4</td>
+<td style="text-align: left;">事実上の初期版</td>
+</tr>
+</tbody>
+</table>
+<h2 id="functions">Functions</h2>
+<figure id="_figure-1">
+<img alt="BL-DIAGRAM" id="BL-DIAGRAM" src="../block-diagram.png" width="100%" />
+<figcaption><span>Figure&nbsp;1:</span> Simplified block diagram of Str-HRTDC.</figcaption>
+</figure>
+<p><a href="#BL-DIAGRAM">図</a>はStr-HRTDCの簡易ブロックダイアグラムです。
+AMANEQ側にデータリンクとMIKUMARIポートが存在するため、外部との通信や同期はAMANEQが行います。
+メザニンとはメザニンベースコネクタを通じてつながっており、複数の通信プロトコルでAMANEQ上のFPGAと通信を行います。
+Str-HRTDC Base上にはMikumariClockHubと同様にクロックを受信するためのLACCPと再送信するためのLACCPが存在し、まずAMANEQ上の時刻を同期して、更にメザニン上の時刻同期を行います。
+そのため、Str-HRTDC上には3つの時刻ドメインが存在し、各々が内部のハートビートカウンターを頼りに動いています。</p>
+<p>Str-HRTDC Base上にはstreaming TDCの機能の内back merger以降の機能が実装されており、メザニンカードからデータを集めてSiTCP-XGを通じてPCへ送信する事が役割です。
+AMANEQ本体には時間を測定する機能は実装されておらず、メザニンカードを搭載していない場合何もできません。
+Scalerは限定的な情報を記録しているのみです。詳しくは後述します。
+Base ファームウェアはスタンドアロンモードを実装しており、AMANEQ単体で動作する事が可能です。
+システムクロック信号の生成にはCDCE62002を使用しているので、<strong>CDCE62002を未設定のAMANEQではこのファームウェアは動作しません。</strong>
+125 MHzの入力から500 MHzと125 MHzのクロック信号を生成するようにCDCE62002を設定してください。</p>
+<p>Str-HRTDCとしての主機能は殆どがメザニン上のFPGAに実装されています。
+メザニンカードにつき32ch入力が可能です。
+<strong>入力信号規格はLVDSのみです。AMANEQ本体とは違い、ECLやPECLはサポートしていません。</strong>
+メザニン上のstreaming TDCブロックにはfront-mergerまでが実装されており、時間分解能が20psである事以外は、構造的に殆どStr-LRTDCと同様です。
+Streaming TDCとしての基本的な動作についてはStr-LRTDCを参照してください。
+Scaler機能についてもStr-LRTDCと同様ですが、システムインフォメーションを2つのメザニンカードは独立に記録しているので、その取扱いに注意が必要です。これについても後述します。</p>
+<p>本ファームウェアに搭載されている通信プロトコルはSiTCP-XGです。
+<strong>Gigabit Ethernetでは動作しません。相手側も10Gigabit Ethernetで通信可能な機器である必要があります。</strong>
+また、auto-negotiationは働かないです。</p>
+<figure id="_figure-2">
+<img alt="PORT-MAP" id="PORT-MAP" src="../port-map.png" width="80%" />
+<figcaption><span>Figure&nbsp;2:</span> Port map of Str-HRTDC</figcaption>
+</figure>
+<p><a href="#PORT-MAP">図</a>はTDC入力チャンネル番号とMIKUMARIのポート番号を示しています。
+MIKUMARIのポートは、0番がupper mezzanine、1番がlower mezzanine、2番が受信用のポートにアサインされています。</p>
+<h3 id="led-and-dip-switch-20250106">LED and DIP switch (2025.01.06)</h3>
+<p>MIKUMARIシステムを利用している場合、1-3番がすべて点灯していれば正常です。
+スタンドアロンの場合、1番と3番が点灯していれば正常です。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">LED #</th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">DAQ is running</td>
+<td style="text-align: left;">データ読み出し中である事を示します。</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Ready for DAQ</td>
+<td style="text-align: left;">時刻同期が完了し、DAQを走らせられる状態である事を示します。</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">MIKUMARI (2) link up</td>
+<td style="text-align: left;">MIKUMARIポートの2番がリンクアップしている状態です。</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">PLL locked</td>
+<td style="text-align: left;">全ての内部クロック信号が正常に出力されている状態です。</td>
+</tr>
+</tbody>
+</table>
+<p>Str-HRTDC Baseは2枚ともメザニンカードを搭載しているケースと、upper slotにだけメザニンカードを搭載しているケースをサポートしています。
+Lower slotにだけメザニンカードを搭載すると動作しません。
+<strong>搭載メザニン数に応じてDIP 3番を適切に設定してください。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">DIP #</th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">AMANEQ</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">SiTCP IP setting</td>
+<td style="text-align: left;">0: デフォルトIPを使用します <br> 1: ユーザー設定のIPを使用します (要ライセンス)。</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Standalone mode</td>
+<td style="text-align: left;">0: MIKUMARIシステムを使用します<br>1: ローカル発振器を使用しスタンドアロンモードになります</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Lower Mzn absent</td>
+<td style="text-align: left;">0: 2枚ともメザニンカードを搭載している場合 <br> 1: Upper mezzanine slowのみ使用している場合</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Not in use</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">Mezzanine</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Not in use</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Not in use</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Not in use</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Not in use</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="local-bus-modules">Local bus modules</h2>
+<p>Str-HRTDCでは2つのFPGAが接続されているので、メザニン側のFPGAを制御するためにlocal busの拡張が必要になります。
+2つのFPGAは<a href="#BUS-BRIDGE">図</a>に示すようにbus bridge primary/secondaryを通じて接続されています。
+AMANEQ側のbus bridge primary (BBP) はlocal bus moduleです。
+AMANEQ側から見るとメザニンFPGAへの通信はBBPへの読み書きに見えます。
+一方、メザニン側のbus bridge secondaryはlocal bus controllerから見ると外部リンクに見えます。</p>
+<p>BBPを介してのアクセスには通常の通信よりも余計に手順がかかります。
+そのため、hul-common-libで用意している読み書き用の実行体では煩雑になってしまうため、amaneq-softで一連の通信をまとめたwrite/read_mzn_registerという実行体を用意しています。
+メザニンFPGAへアクセスするときはこの実行体を使用してください。</p>
+<p>メザニンベースコネクタを介して2つのFPGAつながっているため、しっかりつながっていないと通信エラーを起こします。
+一度エラーを起こすとlocal busが応答しなくなるため、リセットボタンによるハードウェアリセットか、MIKUMARIによる遠隔リセットが必要になります。</p>
+<figure id="_figure-3">
+<img alt="BUS-BRIDGE" id="BUS-BRIDGE" src="../bus-bridge.png" width="80%" />
+<figcaption><span>Figure&nbsp;3:</span> Local bus bridge</figcaption>
+</figure>
+<p>Str-LRTDC Baseには8個のローカルバスモジュールが存在します。
+以下がローカルバスアドレスのマップです。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Local Module</th>
+<th style="text-align: left;">Address range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Mikumari Utility</td>
+<td style="text-align: left;">0x0000'0000 - 0x0FFF'0000</td>
+</tr>
+<tr>
+<td style="text-align: left;">DAQ Controller</td>
+<td style="text-align: left;">0x2000'0000 - 0x2FFF'0000</td>
+</tr>
+<tr>
+<td style="text-align: left;">BusBridgePrimary upper</td>
+<td style="text-align: left;">0x3000'0000 - 0x3FFF'0000</td>
+</tr>
+<tr>
+<td style="text-align: left;">BusBridgePrimary lower</td>
+<td style="text-align: left;">0x4000'0000 - 0x4FFF'0000</td>
+</tr>
+<tr>
+<td style="text-align: left;">IO Manager</td>
+<td style="text-align: left;">0x5000'0000 - 0x5FFF'0000</td>
+</tr>
+<tr>
+<td style="text-align: left;">Scaler</td>
+<td style="text-align: left;">0x8000'0000 - 0x8FFF'0000</td>
+</tr>
+<tr>
+<td style="text-align: left;">CDCE62002 Controller</td>
+<td style="text-align: left;">0xB000'0000 - 0xBFFF'0000</td>
+</tr>
+<tr>
+<td style="text-align: left;">Self Diagnosis System</td>
+<td style="text-align: left;">0xC000'0000 - 0xCFFF'0000</td>
+</tr>
+<tr>
+<td style="text-align: left;">Flash Memory Programmer</td>
+<td style="text-align: left;">0xD000'0000 - 0xDFFF'0000</td>
+</tr>
+<tr>
+<td style="text-align: left;">Bus Controller</td>
+<td style="text-align: left;">0xE000'0000 - 0xEFFF'0000</td>
+</tr>
+</tbody>
+</table>
+<p>Mezzanine Str-LRTDCには5個のローカルバスモジュールが存在します。
+メザニン側は使用するアドレスのレンジが異なっています。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Local Module</th>
+<th style="text-align: left;">Address range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Mikumari Utility</td>
+<td style="text-align: left;">0x0000 - 0x0FFF</td>
+</tr>
+<tr>
+<td style="text-align: left;">DAQ Controller</td>
+<td style="text-align: left;">0x1000 - 0x1FFF</td>
+</tr>
+<tr>
+<td style="text-align: left;">Streaming TDC</td>
+<td style="text-align: left;">0x2000 - 0x2FFF</td>
+</tr>
+<tr>
+<td style="text-align: left;">Scaler</td>
+<td style="text-align: left;">0x8000 - 0x8FFF</td>
+</tr>
+<tr>
+<td style="text-align: left;">Self Diagnosis System</td>
+<td style="text-align: left;">0xC000 - 0xCFFF</td>
+</tr>
+<tr>
+<td style="text-align: left;">Bus Controller</td>
+<td style="text-align: left;">0xE000 - 0xEFFF</td>
+</tr>
+</tbody>
+</table>
+<h2 id="module-reset">Module reset</h2>
+<figure id="_figure-4">
+<img alt="RESET" id="RESET" src="../reset-path.png" width="80%" />
+<figcaption><span>Figure&nbsp;4:</span> Local bus bridge</figcaption>
+</figure>
+<p><a href="#RESET">図</a>にStr-HRTDCのリセット系統を示します。
+リセットボタンはAMANEQとメザニン上のFPGA両方にリセットを発行する最も強力な方法ではありますが、MIKUMARIを含めてすべてのブロックをリセットしてしまうので、実験中に気軽に押すことはお勧めしないです。
+最終手段として使ってください。
+遠隔でモジュールリセットを行う場合は以下の手順で行ってください。</p>
+<ul>
+<li>Local busが正常に応答する場合<ol>
+<li>Mezzanineのlocal bus controller (BCT) からユーザーリセットを発効する</li>
+<li>AMANEQのBCTからユーザーリセットを発行する</li>
+</ol>
+</li>
+<li>Mezzanine側のlocal busが正常に応答しない場合<ol>
+<li>DAQ controller からforce resetを発行しメザニンを初期化する</li>
+<li>AMANEQ側のBCTからユーザーリセットを発行する</li>
+</ol>
+</li>
+<li>AMANEQ側のlocal busが正常に動作しない場合<ol>
+<li>MIKUMARI経由でAMANEQへリセットを行う</li>
+<li>DAQ controller からforce resetを発行しメザニンを初期化する</li>
+</ol>
+</li>
+</ul>
+<p>いずれの場合においても、リセット後にamaneq-softのinitializeを実行してdaq data receiverとtapped-delay lineのLUTの校正を行ってください。</p>
+<h2 id="streaming-tdc-block">Streaming-TDC block</h2>
+<p>Streaming TDCの基本構造はStr-LRTDCと同様です。まずは、Str-LRTDCのページを参照してください。
+ここではHR-TDCに特有の事を記述します。
+また、tapped-delay lineによる高分解能時間測定については<a href="https://hul-official.gitlab.io/hul-ug/firmware/main/#mezzanine-hr-tdc-hul-hr-tdc-base">HULのユーザーガイド</a>も参考にしてください。</p>
+<h3 id="data-receiver">Data Receiver</h3>
+<p>メザニン側はDAQデータをDDR transmitterを通して8 GbpsでAMANEQ側へ転送します。
+データをAMANEQ側で受け取るためにはDDR receiverを初期化する必要があり、電源投入後とモジュールリセット後にはamaneq-softのinitialize実行体を使って初期化してください。</p>
+<h3 id="data-merging-block">Data merging block</h3>
+<p>Str-HRTDCではfront-mergerとback-mergerが物理的に2つのFPGAに分かれているため、限られた信号線でstreaming TDC全体を制御しています。
+そのため、高負荷になった時の制御がうまくいかずデータ破損がStr-LRTDCに比べると起こりやすいです。
+また、破損が発生した時に復帰がうまくいかない事もあります。
+多くの場合で、データ破損はback-merger上のlocal heartbeat frame number mismatchとして検出されます。
+Self recovery modeをONにしている場合、この時自動復帰を試みますが、前述のように自動復帰できない事があります。
+Delimiter flagsを監視し、このエラーが発生し続けるようであればDAQを止めてモジュールリセットを試みてください。</p>
+<h3 id="clock-synchronization">Clock synchronization</h3>
+<p>2つのメザニン上のFPGAのシステムクロックは、AMANEQ上のシステムクロックに対してそれぞれ異なった位相を持っています。
+Back-merger上でハートビートフレームを結合するためには、あらかじめLACCP fine offsetによって時刻補正を行っている必要があります。
+そうしないと、位相関係の違うフレームを束ねる事になってしまうためです。
+LACCP fine offsetは2つのFPGAで異なっており、デリミターワード上のLACCP fine offsetの領域は1つしかないため、オフラインで位相関係をただすことはできません。
+<strong>そのため、Str-HRTDCではFPGA内でのLACCP fine offsetによる時刻補正をオフにすることが出来ないようになっています。</strong></p>
+<h3 id="throttling">Throttling</h3>
+<p><strong>Str-HRTDCではthrottling 機能はすべてメザニン側のFPGAに搭載されています。</strong>
+Str-LRTDCではoutput throttlingはvital blockの最後に実装されていますが、Str-HRTDCではfront-mergerの後に実装されています。
+この理由は、メザニン上で動いているstreaming TDCはお互い独立したDAQ機能であるためです。
+AMANEQ上のFPGAは2つの独立したモジュールのデータをまとめて、1つのモジュールのように見せかけています。
+メザニンを2つ搭載してる際には、<strong>heartbeat frame throttlingの設定が2つのFPGAで同じになるようにしてください。</strong>
+AMANEQ側のFPGAには設定できるstreaming TDCの機能は存在しません。</p>
+<h3 id="data-structure">Data structure</h3>
+<h4 id="tdc-data-category">TDC data category</h4>
+<pre><code>Str-HRTDC Leading/trailing data word
+MSB                                                                                                     LSB
+[    6-bit    ][    7-bit    ][           22-bit           ][                   29-bit                   ]
+   Data type       Channel                 TOT                                TDC timing
+
+Throttling data word
+[    6-bit    ][    7-bit    ][        22-bit        ][        16-bit        ][          13-bit          ]
+   Data type       Channel            Reserve            Throttling timing            Zero padding
+</code></pre>
+<p>以下は先頭の6-bit data typeのリストです。
+Input throttling type-1のデータタイプは予約だけされています。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">6-bit data-type pattern</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">b001011</td>
+<td style="text-align: left;">Leading edge timing</td>
+</tr>
+<tr>
+<td style="text-align: center;">b001101</td>
+<td style="text-align: left;">Trailing edge timing</td>
+</tr>
+<tr>
+<td style="text-align: center;">b011001</td>
+<td style="text-align: left;">Input throttling type-1 start</td>
+</tr>
+<tr>
+<td style="text-align: center;">b010001</td>
+<td style="text-align: left;">Input throttling type-1 end</td>
+</tr>
+<tr>
+<td style="text-align: center;">b011010</td>
+<td style="text-align: left;">Input throttling type-2 start</td>
+</tr>
+<tr>
+<td style="text-align: center;">b010010</td>
+<td style="text-align: left;">Input throttling type-2 end</td>
+</tr>
+</tbody>
+</table>
+<p>Leading/trailing data wordではLSB精度はTOT、TDCタイミングともに1/1024 ns (~0.98 ps)です。
+約1psまでデータビットは用意されていますが、1psの時間分解能を持っているわけではないです。
+これはFPGAが持っているtapped-delay lineのcalibration LUTの出力を表現するために必要なビット長がこの桁まであったためです。
+TOT領域は22-bit確保されていますが、最大TOT値は4000nsです。それ以上のTOT値が返ってくることはありません。
+TDCタイミング領域は内部的には16-bit fine-scale timestamp + 13-bit fine timingとなっています。</p>
+<p>Throttling data wordはStr-LRTDCと同様です。</p>
+<h4 id="heartbeat-delimiter-category">Heartbeat delimiter category</h4>
+<p>Str-LRTDCと同様です。</p>
+<h3 id="register-address-map">Register address map</h3>
+<p><strong>2025.01.06　追記</strong></p>
+<p>kHbdUserRegはメザニン側ではなく、AMANEQ側で設定するように変更されました。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Register name</th>
+<th style="text-align: left;">Address</th>
+<th style="text-align: center;">Read/Write</th>
+<th style="text-align: center;">Bit width</th>
+<th style="text-align: left;">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">AMANEQ</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Mezzanine</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrControl</td>
+<td style="text-align: left;">0x2010</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Tdc unit control bits (default: 0x0) <br> 1st-bit: Enable to  bypass the calibration LUT. <br> 2nd-bit: Enable automatic page switch for the calibration LUT.</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrReqSwitch</td>
+<td style="text-align: left;">0x2020</td>
+<td style="text-align: center;">W</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Manually switch the calibration LUT page</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrStatus</td>
+<td style="text-align: left;">0x2030</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Status register of the tdc unit</td>
+</tr>
+<tr>
+<td style="text-align: left;">kTdcMaskMain</td>
+<td style="text-align: left;">0x2040</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: left;">Channel mask for 0-31ch    (default: 0x0)</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">kEnBypass</td>
+<td style="text-align: left;">0x2050</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Enable bypass for 2-us delay buffer and paring unit. (default: 0x0) <br> 1st-bit: Enable bypass for 2-us delay buffer <br> 2nd-bit: Enable bypass for paring unit.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">kTotFilterCtrl</td>
+<td style="text-align: left;">0x2060</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Enable TOT filter. (default: 0x0) <br> 1st-bit: Enable TOT filter unit <br> 2nd-bit: Enable zero-TOT through mode</td>
+</tr>
+<tr>
+<td style="text-align: left;">kTotMinTh</td>
+<td style="text-align: left;">0x2070</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: left;">TOT filter low threshold</td>
+</tr>
+<tr>
+<td style="text-align: left;">kTotMaxTh</td>
+<td style="text-align: left;">0x2080</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: left;">TOT filter high threshold</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">kTrgAssistCtrl</td>
+<td style="text-align: left;">0x2090</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Set trigger assisted mode. (default: 0x0) <br> 1st-bit: Enable trigger gate mode <br> 2nd-bit: Enable Veto gate mode</td>
+</tr>
+<tr>
+<td style="text-align: left;">kTrgAssistDelay</td>
+<td style="text-align: left;">0x20A0</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: left;">Set the delay from the trigger (veto) input to opening the trigger (veto) gate. LSB precision is 8ns.</td>
+</tr>
+<tr>
+<td style="text-align: left;">kTrgAssistWidth</td>
+<td style="text-align: left;">0x20B0</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: left;">Set the trigger (veto) gate width. LSB precision is 8ns.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">kHbfThrottCtrl</td>
+<td style="text-align: left;">0x20C0</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Set the heartbeat frame throttling condition. <br> 0x0: Disable (default) <br> 0x1: Only data for frame numbers that are multiples of 2 is acquired. <br> 0x2: Only data for frame numbers that are multiples of 4 is acquired. <br> 0x4: Only data for frame numbers that are multiples of 8 is acquired. <br> 0x8: Only data for frame numbers that are multiples of 16 is acquired.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><s>kHbdUserReg</s></td>
+<td style="text-align: left;"><s>0x20D0</s></td>
+<td style="text-align: center;"><s>W</s></td>
+<td style="text-align: center;"><s>16</s></td>
+<td style="text-align: left;"><s>The register value to be embedded to the 2nd delimiter word.</s></td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">kSelfRecoveryMode</td>
+<td style="text-align: left;">0x20E0</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Enable the automatic recovery process for the local heartbeat frame mismatch (default: 0x0).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>補足説明</strong></p>
+<ul>
+<li>ControlBits<ul>
+<li>Calibration LUTをバイパスするとraw tap number (0-63)がTDCデータの下位ビット領域に現れますが、デバッグ用の機能のため開発者以外では使用しないでください。</li>
+<li>入力が蓄積して次のLUTページが準備できた段階で自動的に新しいページへスイッチするようになります。ONにすることを推奨します。</li>
+</ul>
+</li>
+<li>ReqSwitch<ul>
+<li>Calibration LUTページをマニュアルでスイッチします。自動スイッチ機能はOFFにしてから実行してください。</li>
+</ul>
+</li>
+<li>Status<ul>
+<li>1st-bit: Readiness of the next calibration LUT page</li>
+</ul>
+</li>
+<li>TdcMask<ul>
+<li>TdcMaskをセットすると該当チャンネルからTDCデータが出力されなくなります。</li>
+<li>LSB側が若いチャンネル番号に対応します。</li>
+<li>Scalerへは影響を与えません。</li>
+</ul>
+</li>
+<li>EnBypass<ul>
+<li>2-us delay bufferをバイパスする機能は現状DAQ機能に何も変化を与えません。</li>
+<li>ペアリングユニットをバイパスすると立下りデータが別に返ってきます。</li>
+</ul>
+</li>
+<li>TotFilter<ul>
+<li>Zero-TOT through modeではたとえ下限値が設定されていたとしてもTOTが0のデータを例外的に通過させます。</li>
+<li>閾値設定のLSB精度はTDCと同じ~0.98psです。</li>
+</ul>
+</li>
+<li>TrgAssist<ul>
+<li>Trigger modeではトリガー入力によりデータを通過させるためのゲートを開きます。Veto modeではベト入力によりデータをブロックするゲートを開きます。</li>
+<li>kTrgAssistCtrlには0x3を設定できません。</li>
+</ul>
+</li>
+<li>SelfRecoveryMode<ul>
+<li>Local heartbeat frame number mismatch (delimiter flag 10th bit)が発生した時に自動復帰するプロセスを有効にします。</li>
+<li>このモードが有効の時local heartbeat frame mismatchが起きると、自動的にDAQ状態をOFFしてデータ送信を止め、データマージングブロックをリセットしてからDAQ状態をONしデータ送信を再開します。</li>
+<li>ソフトウェアからは数フレームほどデータブロックが抜けたように見えます。</li>
+</ul>
+</li>
+</ul>
+<h2 id="scaler">Scaler</h2>
+<p>スケーラー機能の概要とデータ構造はStr-LRTDCと同様ですが、Str-HRTDCでは3つのスケーラーが独立に動いています。</p>
+<ul>
+<li>AMANEQのスケーラー<ul>
+<li>Real time, Mikumari error number, Trigger request, Trigger rejected のみを記録しています。</li>
+</ul>
+</li>
+<li>Mezzanine cardのスケーラー<ul>
+<li>Trigger requestとTrigger rejected以外の全てを2台のFPGAで独立に記録しています。</li>
+</ul>
+</li>
+</ul>
+<h3 id="register-address-map_1">Register address map</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Register name</th>
+<th style="text-align: left;">Address</th>
+<th style="text-align: center;">Read/Write</th>
+<th style="text-align: center;">Bit width</th>
+<th style="text-align: left;">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">AMANEQ</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Same as for Str-LRTDC</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Mezzanine</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrScrReset</td>
+<td style="text-align: left;">0x8000</td>
+<td style="text-align: center;">W</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Reset signals <br> 0x1: Local reset <br> 0x2: Global reset <br> 0x4: FIFO reset</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrLatchCnt0</td>
+<td style="text-align: left;">0x8010</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Send latch request to the free-run scaler unit</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrLatchCnt1</td>
+<td style="text-align: left;">0x8011</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Send latch request to the gated scaler 1</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrLatchCnt2</td>
+<td style="text-align: left;">0x8012</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Send latch request to the gated scaler 2</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrNumCh</td>
+<td style="text-align: left;">0x8020</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: left;">Number of words of scaler data block including system information (unit: words)</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrStatus</td>
+<td style="text-align: left;">0x8030</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: left;">Scaler unit status</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrReadFIFO</td>
+<td style="text-align: left;">0x8100</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Address to read data from FIFO</td>
+</tr>
+</tbody>
+</table>
+<p><strong>補足説明</strong></p>
+<ul>
+<li>AddrScrReset<ul>
+<li>Local resetはアクセス先のスケーラーカウントのリセットを行います。</li>
+<li>Global resetはアクセス先のスケーラーカウントをリセットし、さらにMIKUMARIリンク経由でスケーラーリセット信号を下流モジュールへ送信します。MikuClockRootファームウェアでのみ有効な機能です。</li>
+<li>FIFO resetはアクセス先のFIFOの中身をリセットします。</li>
+</ul>
+</li>
+<li>LatchCnt<ul>
+<li>このアドレスへ読み出しアクセスをするとラッチリクエストになります。</li>
+<li>アドレスによってどのスケーラユニットへラッチリクエストを送信するか決まります。</li>
+</ul>
+</li>
+<li>NumCh<ul>
+<li>スケーラーデータブロックのワード数はファームウェアによって異なるので、何ワード読み出したらよいか知るためのレジスタです。読むべきワード数が得られます。</li>
+</ul>
+</li>
+<li>Status<ul>
+<li>1st-bit: FIFO empty</li>
+<li>others: Reserved</li>
+</ul>
+</li>
+<li>ReadFIFO<ul>
+<li>1-byteずつデータをFIFOから読み出すためのアドレスです。<ul>
+<li>
+<ul>
+<li>3種類のスケーラユニットでReadFIFOを共有しています。ラッチリクエストを送信したユニットのデータがFIFOには入っています。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="mikumari-utility">Mikumari Utility</h2>
+<h3 id="register-address-map_2">Register address map</h3>
+<p>AMANEQ側のアドレスマップはStr-LRTDCと同様です。
+Overviewを参照してください。
+以下に、メザニン側のアドレスマップを示します。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Register name</th>
+<th style="text-align: left;">Address</th>
+<th style="text-align: center;">Read/Write</th>
+<th style="text-align: center;">Bit width</th>
+<th style="text-align: left;">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">kAddrCbtLaneUp</td>
+<td style="text-align: left;">0x0000</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: left;">各ビットがMIKUMARIの物理層(CBT)の状態を示します。1で物理層がレディの状態です。どのビットがどのポートに対応するのか、何ビット目まで有効であるかは各ファームウェアに依存します。</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrCbtTapValueIn</td>
+<td style="text-align: left;">0x0010</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">CBTに設定されているIDELAYのタップ値を読み取ります (RegIndexによる指定が有効)</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrCbtTapValueOut</td>
+<td style="text-align: left;">0x0020</td>
+<td style="text-align: center;">W</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">CBTに設定するべきIDELAYのタップ値を与えます (RegIndexによる指定が有効)</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrCbtBitSlipIn</td>
+<td style="text-align: left;">0x0030</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">CBTが行ったビットスリップの回数を読み取ります (RegIndexによる指定が有効)</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrCbtInit</td>
+<td style="text-align: left;">0x0040</td>
+<td style="text-align: center;">W</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: left;">CBTへ初期化命令を送ります。各ビットが各ポートへの初期化信号になっており、1で初期化の実行です。どのビットがどのポートに対応するのか、何ビット目まで有効であるかは各ファームウェアに依存します。</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrMikumariUp</td>
+<td style="text-align: left;">0x0050</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: left;">各ビットがMIKUMARIリンクの状態を示します。1でリンクアップの状態です。どのビットがどのポートに対応するのか、何ビット目まで有効であるかは各ファームウェアに依存します。</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrLaccpUp</td>
+<td style="text-align: left;">0x0060</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: left;">各ビットがLACCPの状態を示します。1で時刻同期が完了した状態です。どのビットがどのポートに対応するのか、何ビット目まで有効であるかは各ファームウェアに依存します。</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrPartnerIpAddr</td>
+<td style="text-align: left;">0x0070</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: left;">接続先のSiTCPのIPアドレスを取得します（RegIndexによる指定が有効)</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrHbcOffset</td>
+<td style="text-align: left;">0x0080</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: left;">Heartbeat counterへ与えらられたオフセット値を取得します。(LACCPのセカンダリ側のみ有効)</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrLocalFineOffset</td>
+<td style="text-align: left;">0x0090</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: left;">LACCPが算出したlocal fine offsetを取得します。(LACCPセカンダリ側のみ有効)</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrLaccpFineOffset</td>
+<td style="text-align: left;">0x00A0</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: left;">LACCPが算出したLACCP fine offsetを取得します。（LACCPセカンダリ側のみ有効)</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrHbfState</td>
+<td style="text-align: left;">0x00B0</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">ハートビートフレーム状態を設定します。1でDAQ running、0でDAQ idleです。そのクロック分配ネットワークのrootモジュールでのみ有効。</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrRegIndex</td>
+<td style="text-align: left;">0x0100</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">いくつかのレジスタにおいて読み書きを行う対象のポート番号を指定します。</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrNumLinks</td>
+<td style="text-align: left;">0x0200</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">そのファームウェアが備えているMIKUMARIリンクの数を取得します。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="daq-controller">DAQ Controller</h2>
+<p>DAQ Controllerはmezzanine card側のDDR transmitterとAMANEQ側のDDR receiverの初期化を行う事が役割です。
+電源投入後やモジュールリセット後にamaneq-softのinitialize実行体を使って初期化してください。
+また、メザニンカード側では最初のcalibration LUTページを作るための補助も行います。
+ユーザーが各レジスタに個別にアクセスする事はないと思われます。</p>
+<h3 id="register-address-map_3">Register address map</h3>
+<p><strong>2025.01.06 追記</strong></p>
+<p>Heartbeat delimiterへのuser register設定はAMANEQ側のDAQ Controllerで設定する事になりました。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Register name</th>
+<th style="text-align: left;">Address</th>
+<th style="text-align: center;">Read/Write</th>
+<th style="text-align: center;">Bit width</th>
+<th style="text-align: left;">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">AMANEQ</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">AMANEQ</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrInitDDR</td>
+<td style="text-align: left;">0x2020'0000</td>
+<td style="text-align: center;">W</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Assert DDR receiver initialize signal</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrCtrlReg</td>
+<td style="text-align: left;">0x2030'0000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">DDR receiver control register <br> 1st-bit: Enable test mode upper <br> 2nd-bit: Enable test mode lower <br> 3rd-bit: Enable upper slot <br> 4th-bit: Enable lower slot <br> 5th-bit: Force reset upper <br> 6th-bit: Force reset lower</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrRcvStatus</td>
+<td style="text-align: left;">0x2040'0000</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Receiver status <br> 1st-bit: Bit aligned upper <br> 2nd-bit: Bit aligned lower <br> 3rd-bit: BitError upper <br> 4th-bit: Bit error lower</td>
+</tr>
+<tr>
+<td style="text-align: left;">kHbdUserReg</td>
+<td style="text-align: left;">0x2050'0000</td>
+<td style="text-align: center;">W</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: left;">The register value to be embedded to the 2nd delimiter word</td>
+</tr>
+<tr>
+<td style="text-align: left;">Mezzanine</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Mezzanine</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrCtrlReg</td>
+<td style="text-align: left;">0x1000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Enable transmitter test mode</td>
+</tr>
+<tr>
+<td style="text-align: left;">kAddrExtraPath</td>
+<td style="text-align: left;">0x1010</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Calibrate the LUT for tapped-delay line with the clock signal</td>
+</tr>
+</tbody>
+</table>
+<h2 id="io-manager">IO Manager</h2>
+<p>IO ManagerはAMANEQのNIM IOとFPGA内部の信号等の接続関係を管理するモジュールです。
+NIMポートから入力された信号をどの内部信号へ接続するか、また内部信号をどのNIMポートから出力するかをSiTCPを通じて変更します。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Register name</th>
+<th style="text-align: left;">Address</th>
+<th style="text-align: center;">Read/Write</th>
+<th style="text-align: center;">Bit width</th>
+<th style="text-align: left;">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">kFrameFlag1In</td>
+<td style="text-align: left;">0x50000000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Setting the NIM-IN port to the internal frame flag-1 signal. It is valid when the module is the standalone mode. (default 0x0)</td>
+</tr>
+<tr>
+<td style="text-align: left;">kFrameFlag2In</td>
+<td style="text-align: left;">0x50100000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Setting the NIM-IN port to the internal frame flag-2 signal. It is valid when the module is the standalone mode. (default (0x1))</td>
+</tr>
+<tr>
+<td style="text-align: left;">kTriggerIn</td>
+<td style="text-align: left;">0x50200000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Setting the NIM-IN port to the internal trigger in signal. (default (0x3))</td>
+</tr>
+<tr>
+<td style="text-align: left;">kScrResetIn</td>
+<td style="text-align: left;">0x50300000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Setting the NIM-IN port to the internal scaler reset signal. This signal will be distributed to the mezzanine cards through MIKUMARI. (default (0x3))</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">kSelOutSig1</td>
+<td style="text-align: left;">0x51000000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Selecting the internal signal to output from the NIM-OUT port 1.</td>
+</tr>
+<tr>
+<td style="text-align: left;">kSelOutSig2</td>
+<td style="text-align: left;">0x51100000</td>
+<td style="text-align: center;">W/R</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Selecting the internal signal to output from the NIM-OUT port 2.</td>
+</tr>
+</tbody>
+</table>
+<p>アドレス値が<code>0x50X0'0000</code>のレジスタはNIM-INポートをどの内部信号へ接続するかを決定します。
+各レジスタに対して設定可能な値は以下の通りです。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Register value</th>
+<th style="text-align: left;">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: left;">Connecting the NIM-IN port 1 to the corresponding internal signal.</td>
+</tr>
+<tr>
+<td style="text-align: center;">0x1</td>
+<td style="text-align: left;">Connecting the NIM-IN port 2 to the corresponding internal signal.</td>
+</tr>
+<tr>
+<td style="text-align: center;">0x2</td>
+<td style="text-align: left;">Not in use</td>
+</tr>
+<tr>
+<td style="text-align: center;">0x3</td>
+<td style="text-align: left;">Connecting GND to the corresponding internal signal.</td>
+</tr>
+</tbody>
+</table>
+<p>アドレス値が<code>0x51X0'0000</code>のレジスタはどの内部信号をNIM-OUTポートへ接続するかを決定します。
+各レジスタに対して設定可能な値は以下の通りです。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Register value</th>
+<th style="text-align: left;">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: left;">Connecting the heartbeat signal.</td>
+</tr>
+<tr>
+<td style="text-align: center;">0x1</td>
+<td style="text-align: left;">Connecting the TCP connection establish.</td>
+</tr>
+<tr>
+<td style="text-align: center;">0x2</td>
+<td style="text-align: left;">Connecting the trigger signal from LACCP.</td>
+</tr>
+<tr>
+<td style="text-align: center;">0x3</td>
+<td style="text-align: left;">Connecting the frame flag-1.</td>
+</tr>
+<tr>
+<td style="text-align: center;">0x4</td>
+<td style="text-align: left;">Connecting the frame flag-2.</td>
+</tr>
+<tr>
+<td style="text-align: center;">0x5</td>
+<td style="text-align: left;">Connecting the div16 clock (7.8125 MHz)</td>
+</tr>
+<tr>
+<td style="text-align: center;">0x6</td>
+<td style="text-align: left;">Connecting the system clock signal (125 MHz).</td>
+</tr>
+<tr>
+<td style="text-align: center;">0x7</td>
+<td style="text-align: left;">Connecting the logic of 1</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      KEK IPNS
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["toc.integrate", "navigation.tabs"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
