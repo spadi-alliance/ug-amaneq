@@ -28,11 +28,11 @@ Streaming low-resolution TDC (Str-LRTDC)は128ch入力の1ns精度連続読み�
 
 |Version|Date|Changes|
 |:----:|:----|:----|
-|v2.A|2025.10.14| - Fixed the bit position of the frameFlag1/2 swapped in the heartbeat delimiter flags. <br> - 125 MHz system clock signal can be output from NIM-OUT ports by selecting it via IOM. |
-|v2.9|2025.5.28| - Bugfix version of v2.8. <br> - Fixed the bug that the delay function for the trigger assisted mode does not work. <br> - A clock signal of 7.8125 MHz, divided by 16 from the system clock, can now be output from the NIM output port.|
-|v2.8|2025.3.5| - Bugfix version of v2.6. <br> - Enabling the function to generate data words with input throttling type-2 start/end data types. |
-|v2.7|        | Missing version |
-|v2.6|2025.1.6| - Updating LACCP (v2.1) supporting the frame flag distribution. <br> - Introducing gated scaler. <br> - Introducing IO manager block arranging input/output paths to the NIM IO. <br> - Deprecating the extra 129th TDC input from NIM. <br> - Deprecating DIP2 function.|
+|v2.A|2025.10.14|- Fixed the bit position of the frameFlag1/2 swapped in the heartbeat delimiter flags. <br> - 125 MHz system clock signal can be output from NIM-OUT ports by selecting it via IOM.|
+|v2.9|2025.5.28|- Bugfix version of v2.8. <br> - Fixed the bug that the delay function for the trigger assisted mode does not work. <br> - A clock signal of 7.8125 MHz, divided by 16 from the system clock, can now be output from the NIM output port.|
+|v2.8|2025.3.5|- Bugfix version of v2.6. <br> - Enabling the function to generate data words with input throttling type-2 start/end data types.|
+|v2.7||Missing version|
+|v2.6|2025.1.6|- Updating LACCP (v2.1) supporting the frame flag distribution. <br> - Introducing gated scaler. <br> - Introducing IO manager block arranging input/output paths to the NIM IO. <br> - Deprecating the extra 129th TDC input from NIM. <br> - Deprecating DIP2 function.|
 |v2.5|2024.6.4|事実上の初期版|
 
 ## Functions
@@ -65,15 +65,16 @@ MIKUMARIのポートはセカンダリが0番にアサインされています�
 
 ### LED and DIP switch (2025.01.06)
 
-MIKUMARIシステムを利用している場合、1-3番がすべて点灯していれば正常です。
-スタンドアロンの場合、1番と3番が点灯していれば正常です。
+LED1はデータ収集時にのみ点灯します。
+MIKUMARIシステムを利用している場合、2-4番がすべて点灯していれば正常です。
+スタンドアロンの場合、4番が点灯していれば正常です。
 
 |LED #||Comment|
 |:----:|:----|:----|
-|1| DAQ is running| データ読み出し中である事を示します。 |
-|2| Ready for DAQ| 時刻同期が完了し、DAQを走らせられる状態である事を示します。 |
-|3| MIKUMARI (0) link up| MIKUMARIポートの0番がリンクアップしている状態です。 |
-|4| PLL locked| 全ての内部クロック信号が正常に出力されている状態です。 |
+|1|DAQ is running|データ読み出し中である事を示します。|
+|2|Ready for DAQ|時刻同期が完了し、DAQを走らせられる状態である事を示します。|
+|3|MIKUMARI (0) link up|MIKUMARIポートの0番がリンクアップしている状態です。|
+|4|PLL locked|全ての内部クロック信号が正常に出力されている状態です。|
 
 |DIP #||Comment|
 |:----:|:----|:----|
@@ -102,14 +103,14 @@ Str-LRTDCには7個のローカルバスモジュールが存在します。
 
 |Local Module|Address range|
 |:----|:----|
-|Mikumari Utility        |0x0000'0000 - 0x0FFF'0000|
-|Streaming TDC           |0x1000'0000 - 0x1FFF'0000|
-|IO Manager              |0x2000'0000 - 0x2FFF'0000|
-|Scaler                  |0x8000'0000 - 0x8FFF'0000|
-|CDCE62002 Controller    |0xB000'0000 - 0xBFFF'0000|
-|Self Diagnosis System   |0xC000'0000 - 0xCFFF'0000|
-|Flash Memory Programmer |0xD000'0000 - 0xDFFF'0000|
-|Bus Controller          |0xE000'0000 - 0xEFFF'0000|
+|Mikumari Utility|0x0000'0000 - 0x0FFF'0000|
+|Streaming TDC|0x1000'0000 - 0x1FFF'0000|
+|IO Manager|0x2000'0000 - 0x2FFF'0000|
+|Scaler|0x8000'0000 - 0x8FFF'0000|
+|CDCE62002 Controller|0xB000'0000 - 0xBFFF'0000|
+|Self Diagnosis System|0xC000'0000 - 0xCFFF'0000|
+|Flash Memory Programmer|0xD000'0000 - 0xDFFF'0000|
+|Bus Controller|0xE000'0000 - 0xEFFF'0000|
 
 ## Streaming-TDC block
 
@@ -405,22 +406,22 @@ Standalone modeの場合自身のNIM入力からの信号入力の結果がこ�
 
 |Bit|Flag|Comment|
 |:----:|:----|:----|
-|16th bit|Reserve| |
+|16th bit|Reserve||
 |15th bit|Radiation URE|Unrecoverable error of FPGA by radiation. FPGA reconfiguration is requested.|
 |14th bit|Miku Communication error|There was some kind of communication error of the MIKUMARI link in the heartbeat frame.|
-|13th bit|Reserve| |
+|13th bit|Reserve||
 |12th bit|Overflow|Incoming FIFO's Almost full or full flags are asserted. Unexpected data load. There is a risk of data corruption.|
 |11th bit|Global HBF num mismatch|The frame number received via the MIKUMARI mismatches with the local frame number. (Potentially communication error).|
 |10th bit|Local HBF num mismatch|Merger block combined the data block with different frame number. It indicates the data corruption.|
-|9th bit|Reserve| |
-|8th bit|Input throttling type1| |
+|9th bit|Reserve||
+|8th bit|Input throttling type1||
 |7th bit|Input throttling type2|Input throttling type2 was working in this frame.|
 |6th bit|Output throttling|A part of data were discarded by the output throttling.|
 |5th bit|HBF throttling|This frame does not contain the TDC data because of the HBF throttling.|
-|4th bit|Reserve| |
-|3rd bit|Reserve| |
-|2nd bit|Frame flag 2| Indicating the frame flag 2 condition in the current heartbeat frame.|
-|1st bit|Frame flag 1| Indicating the frame flag 1 condition in the current heartbeat frame.|
+|4th bit|Reserve||
+|3rd bit|Reserve||
+|2nd bit|Frame flag 2|Indicating the frame flag 2 condition in the current heartbeat frame.|
+|1st bit|Frame flag 1|Indicating the frame flag 1 condition in the current heartbeat frame.|
 
 16-bit LACCP fine offsetはLACCPが導出したfine offset値であり、16-bit符号付き整数です。
 LSBの時間精度は0.9765625 (1/1.024) psであり、Str-HRTDCのビット精度と同一です。
@@ -535,21 +536,21 @@ Software sectionで紹介する```read_scr```プログラムは先頭に64-bit�
 |1st|Heartbeat count|16-bit fine-scale timestamp when receiving the latch request|
 |2nd|Heartbeat frame number|24-bit coarse-scale timestamp when receiving the latch request|
 |3rd|Real time|Time elapsed after power-on|
-|4th|Daq run time| Total run time while the DAQ state is running |
-|5th|Total throttling time| Total time while any of throttling functions are running|
-|6th|Input throttling type-1 time| Total time while input throttling type-1 is running|
-|7th|Input throttling type-2 time| Total time while input throttling type-2 is running|
-|8th|Output throttling time| Total time while output throttling is running|
-|9th|Hbf throttling time| Total time while heartbeat frame throttling is running|
-|10th|Mikumari error number| The number of communication error happened in the MIKUMARI link|
-|11th|Trigger request| The number of trigger inputs|
-|12th|Trigger rejected| The number of rejected trigger inputs|
-|13th|Frame flag-1 time| Time while the frame flag 1 is on|
-|14th|Frame flag-2 time| Time while the frame flag 2 is on|
-|15th|Reserve| |
-|16th|Reserve| |
-|17th|Reserve| |
-|18th|Reserve| |
+|4th|Daq run time|Total run time while the DAQ state is running|
+|5th|Total throttling time|Total time while any of throttling functions are running|
+|6th|Input throttling type-1 time|Total time while input throttling type-1 is running|
+|7th|Input throttling type-2 time|Total time while input throttling type-2 is running|
+|8th|Output throttling time|Total time while output throttling is running|
+|9th|Hbf throttling time|Total time while heartbeat frame throttling is running|
+|10th|Mikumari error number|The number of communication error happened in the MIKUMARI link|
+|11th|Trigger request|The number of trigger inputs|
+|12th|Trigger rejected|The number of rejected trigger inputs|
+|13th|Frame flag-1 time|Time while the frame flag 1 is on|
+|14th|Frame flag-2 time|Time while the frame flag 2 is on|
+|15th|Reserve||
+|16th|Reserve||
+|17th|Reserve||
+|18th|Reserve||
 
 先頭2ワードがラッチリクエスト到達時刻を示しています。
 この値を頼りにして差分を取り、レート計算を行ってください。
@@ -569,13 +570,13 @@ Str-LRTDCではこの欄は0です。
 
 |Register name|Address|Read/Write|Bit width|Comment|
 |:----|:----|:----:|:----:|:----|
-|kAddrScrReset  | 0x80000000|  W|1| Reset signals <br> 0x1: Local reset <br> 0x2: Global reset <br> 0x4: FIFO reset|
-|kAddrLatchCnt0 | 0x80100000|  R|1| Send latch request to the free-run scaler unit|
-|kAddrLatchCnt1 | 0x80110000|  R|1| Send latch request to the gated scaler 1|
-|kAddrLatchCnt2 | 0x80120000|  R|1| Send latch request to the gated scaler 2|
-|kAddrNumCh     | 0x80200000|  R|8| Number of words of scaler data block including system information (unit: words)|
-|kAddrStatus    | 0x80300000|  R|8| Scaler unit status|
-|kAddrReadFIFO  | 0x81000000|  R|-| Address to read data from FIFO|
+|kAddrScrReset|0x80000000|W|1|Reset signals <br> 0x1: Local reset <br> 0x2: Global reset <br> 0x4: FIFO reset|
+|kAddrLatchCnt0|0x80100000|R|1|Send latch request to the free-run scaler unit|
+|kAddrLatchCnt1|0x80110000|R|1|Send latch request to the gated scaler 1|
+|kAddrLatchCnt2|0x80120000|R|1|Send latch request to the gated scaler 2|
+|kAddrNumCh|0x80200000|R|8|Number of words of scaler data block including system information (unit: words)|
+|kAddrStatus|0x80300000|R|8|Scaler unit status|
+|kAddrReadFIFO|0x81000000|R|-|Address to read data from FIFO|
 
 **補足説明**
 
@@ -602,33 +603,33 @@ NIMポートから入力された信号をどの内部信号へ接続するか�
 
 |Register name|Address|Read/Write|Bit width|Comment|
 |:----|:----|:----:|:----:|:----|
-|kFrameFlag1In  | 0x20000000|  W/R|2| Setting the NIM-IN port to the internal frame flag-1 signal. It is valid when the module is the standalone mode. (default 0x0)|
-|kFrameFlag2In  | 0x20100000|  W/R|2| Setting the NIM-IN port to the internal frame flag-2 signal. It is valid when the module is the standalone mode. (default (0x1))|
-|kTriggerIn     | 0x20200000|  W/R|2| Setting the NIM-IN port to the internal trigger in signal. It is valid when the module is the standalone mode. (default (0x3))|
-| |  |  | | |
-|kSelOutSig1    | 0x21000000|  W/R|3| Selecting the internal signal to output from the NIM-OUT port 1. |
-|kSelOutSig2    | 0x21100000|  W/R|3| Selecting the internal signal to output from the NIM-OUT port 2. |
+|kFrameFlag1In|0x20000000|W/R|2|Setting the NIM-IN port to the internal frame flag-1 signal. It is valid when the module is the standalone mode. (default 0x0)|
+|kFrameFlag2In|0x20100000|W/R|2|Setting the NIM-IN port to the internal frame flag-2 signal. It is valid when the module is the standalone mode. (default (0x1))|
+|kTriggerIn|0x20200000|W/R|2|Setting the NIM-IN port to the internal trigger in signal. It is valid when the module is the standalone mode. (default (0x3))|
+||||||
+|kSelOutSig1|0x21000000|W/R|3|Selecting the internal signal to output from the NIM-OUT port 1.|
+|kSelOutSig2|0x21100000|W/R|3|Selecting the internal signal to output from the NIM-OUT port 2.|
 
 アドレス値が`0x20X0'0000`のレジスタはNIM-INポートをどの内部信号へ接続するかを決定します。
 各レジスタに対して設定可能な値は以下の通りです。
 
 |Register value|Comment|
 |:----:|:----|
-|0x0| Connecting the NIM-IN port 1 to the corresponding internal signal.|
-|0x1| Connecting the NIM-IN port 2 to the corresponding internal signal.|
-|0x2| Not in use |
-|0x3| Connecting GND to the corresponding internal signal. |
+|0x0|Connecting the NIM-IN port 1 to the corresponding internal signal.|
+|0x1|Connecting the NIM-IN port 2 to the corresponding internal signal.|
+|0x2|Not in use|
+|0x3|Connecting GND to the corresponding internal signal.|
 
 アドレス値が`0x21X0'0000`のレジスタはどの内部信号をNIM-OUTポートへ接続するかを決定します。
 各レジスタに対して設定可能な値は以下の通りです。
 
 |Register value|Comment|
 |:----:|:----|
-|0x0| Connecting the heartbeat signal.|
-|0x1| Connecting the TCP connection establish.|
-|0x2| Connecting the trigger signal from LACCP.|
-|0x3| Connecting the frame flag-1.|
-|0x4| Connecting the frame flag-2.|
-|0x5| Connecting the div16 clock (7.8125 MHz)|
-|0x6| Connecting the system clock signal (125 MHz). |
-|0x7| Connecting the logic of 1|
+|0x0|Connecting the heartbeat signal.|
+|0x1|Connecting the TCP connection establish.|
+|0x2|Connecting the trigger signal from LACCP.|
+|0x3|Connecting the frame flag-1.|
+|0x4|Connecting the frame flag-2.|
+|0x5|Connecting the div16 clock (7.8125 MHz)|
+|0x6|Connecting the system clock signal (125 MHz).|
+|0x7|Connecting the logic of 1|

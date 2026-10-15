@@ -33,20 +33,20 @@ Streaming high-resolution TDC (Str-HRTDC)は20ps精度の連続読み出しTDC�
 
 |Version|Date|Changes|
 |:----:|:----|:----|
-| AMANEQ |||
-|v2.A|2025.10.14| - 125 MHz system clock signal can be output from NIM-OUT ports by selecting it via IOM.|
-|v2.9|skipped| - Bugfix version of v2.8.  <br> - Fixed the bug breaking the data structure when using only upper mezzanine card.|
-|v2.8|2025.5.28| - Bugfix version of v2.7.  <br> - A clock signal of 7.8125 MHz, divided by 16 from the system clock, can now be output from the NIM output port.|
-|v2.7|2025.3.5| - Bugfix version of v2.6.|
-|v2.6|        | Not working correctly with bug |
-|v2.5|2025.1.6| - Updating LACCP (v2.1) supporting the frame flag distribution. <br> - Introducing gated scaler. |
+|AMANEQ|||
+|v2.A|2025.10.14|- 125 MHz system clock signal can be output from NIM-OUT ports by selecting it via IOM.|
+|v2.9|skipped|- Bugfix version of v2.8.  <br> - Fixed the bug breaking the data structure when using only upper mezzanine card.|
+|v2.8|2025.5.28|- Bugfix version of v2.7.  <br> - A clock signal of 7.8125 MHz, divided by 16 from the system clock, can now be output from the NIM output port.|
+|v2.7|2025.3.5|- Bugfix version of v2.6.|
+|v2.6||Not working correctly with bug|
+|v2.5|2025.1.6|- Updating LACCP (v2.1) supporting the frame flag distribution. <br> - Introducing gated scaler.|
 |v2.4|2024.6.4|事実上の初期版|
-| Mezzanine |||
-|v2.9|2025.10.14| - Fixed the bit position of the frameFlag1/2 swapped in the heartbeat delimiter flags. |
-|v2.8|2025.5.28| - Bugfix version of v2.7. <br> - Fixed the bug that the delay function for the trigger assisted mode does not work. |
-|v2.7|2025.3.5| - Bugfix version of v2.6. <br> - Enabling the function to generate data words with input throttling type-2 start/end data types. <br> - Fixed a bug that caused the same data to be duplicated in rare cases when a narrow pulse was entered. |
-|v2.6|        | Not working correctly with bug |
-|v2.5|2025.1.6| - Updating LACCP (v2.1) supporting the frame flag distribution. <br> - Introducing gated scaler. <br> - Introducing IO manager block arranging input/output paths to the NIM IO. <br> - Deprecating DIP2 function. |
+|Mezzanine|||
+|v2.9|2025.10.14|- Fixed the bit position of the frameFlag1/2 swapped in the heartbeat delimiter flags.|
+|v2.8|2025.5.28|- Bugfix version of v2.7. <br> - Fixed the bug that the delay function for the trigger assisted mode does not work.|
+|v2.7|2025.3.5|- Bugfix version of v2.6. <br> - Enabling the function to generate data words with input throttling type-2 start/end data types. <br> - Fixed a bug that caused the same data to be duplicated in rare cases when a narrow pulse was entered.|
+|v2.6||Not working correctly with bug|
+|v2.5|2025.1.6|- Updating LACCP (v2.1) supporting the frame flag distribution. <br> - Introducing gated scaler. <br> - Introducing IO manager block arranging input/output paths to the NIM IO. <br> - Deprecating DIP2 function.|
 |v2.4|2024.6.4|事実上の初期版|
 
 ## Functions
@@ -84,15 +84,16 @@ MIKUMARIのポートは、0番がupper mezzanine、1番がlower mezzanine、2番
 
 ### LED and DIP switch (2025.01.06)
 
-MIKUMARIシステムを利用している場合、1-3番がすべて点灯していれば正常です。
-スタンドアロンの場合、1番と3番が点灯していれば正常です。
+LED1はデータ収集時にのみ点灯します。
+MIKUMARIシステムを利用している場合、2-4番がすべて点灯していれば正常です。
+スタンドアロンの場合、4番が点灯していれば正常です。
 
 |LED #||Comment|
 |:----:|:----|:----|
-|1| DAQ is running| データ読み出し中である事を示します。 |
-|2| Ready for DAQ| 時刻同期が完了し、DAQを走らせられる状態である事を示します。 |
-|3| MIKUMARI (2) link up| MIKUMARIポートの2番がリンクアップしている状態です。 |
-|4| PLL locked| 全ての内部クロック信号が正常に出力されている状態です。 |
+|1|DAQ is running|データ読み出し中である事を示します。|
+|2|Ready for DAQ|時刻同期が完了し、DAQを走らせられる状態である事を示します。|
+|3|MIKUMARI (2) link up|MIKUMARIポートの2番がリンクアップしている状態です。|
+|4|PLL locked|全ての内部クロック信号が正常に出力されている状態です。|
 
 Str-HRTDC Baseは2枚ともメザニンカードを搭載しているケースと、upper slotにだけメザニンカードを搭載しているケースをサポートしています。
 Lower slotにだけメザニンカードを搭載すると動作しません。
@@ -133,28 +134,28 @@ Str-LRTDC Baseには8個のローカルバスモジュールが存在します�
 
 |Local Module|Address range|
 |:----|:----|
-|Mikumari Utility        |0x0000'0000 - 0x0FFF'0000|
-|DAQ Controller          |0x2000'0000 - 0x2FFF'0000|
-|BusBridgePrimary upper  |0x3000'0000 - 0x3FFF'0000|
-|BusBridgePrimary lower  |0x4000'0000 - 0x4FFF'0000|
-|IO Manager              |0x5000'0000 - 0x5FFF'0000|
-|Scaler                  |0x8000'0000 - 0x8FFF'0000|
-|CDCE62002 Controller    |0xB000'0000 - 0xBFFF'0000|
-|Self Diagnosis System   |0xC000'0000 - 0xCFFF'0000|
-|Flash Memory Programmer |0xD000'0000 - 0xDFFF'0000|
-|Bus Controller          |0xE000'0000 - 0xEFFF'0000|
+|Mikumari Utility|0x0000'0000 - 0x0FFF'0000|
+|DAQ Controller|0x2000'0000 - 0x2FFF'0000|
+|BusBridgePrimary upper|0x3000'0000 - 0x3FFF'0000|
+|BusBridgePrimary lower|0x4000'0000 - 0x4FFF'0000|
+|IO Manager|0x5000'0000 - 0x5FFF'0000|
+|Scaler|0x8000'0000 - 0x8FFF'0000|
+|CDCE62002 Controller|0xB000'0000 - 0xBFFF'0000|
+|Self Diagnosis System|0xC000'0000 - 0xCFFF'0000|
+|Flash Memory Programmer|0xD000'0000 - 0xDFFF'0000|
+|Bus Controller|0xE000'0000 - 0xEFFF'0000|
 
 Mezzanine Str-LRTDCには5個のローカルバスモジュールが存在します。
 メザニン側は使用するアドレスのレンジが異なっています。
 
 |Local Module|Address range|
 |:----|:----|
-|Mikumari Utility        |0x0000 - 0x0FFF|
-|DAQ Controller          |0x1000 - 0x1FFF|
-|Streaming TDC           |0x2000 - 0x2FFF|
-|Scaler                  |0x8000 - 0x8FFF|
-|Self Diagnosis System   |0xC000 - 0xCFFF|
-|Bus Controller          |0xE000 - 0xEFFF|
+|Mikumari Utility|0x0000 - 0x0FFF|
+|DAQ Controller|0x1000 - 0x1FFF|
+|Streaming TDC|0x2000 - 0x2FFF|
+|Scaler|0x8000 - 0x8FFF|
+|Self Diagnosis System|0xC000 - 0xCFFF|
+|Bus Controller|0xE000 - 0xEFFF|
 
 ## Module reset
 
@@ -410,34 +411,34 @@ NIMポートから入力された信号をどの内部信号へ接続するか�
 
 |Register name|Address|Read/Write|Bit width|Comment|
 |:----|:----|:----:|:----:|:----|
-|kFrameFlag1In  | 0x50000000|  W/R|2| Setting the NIM-IN port to the internal frame flag-1 signal. It is valid when the module is the standalone mode. (default 0x0)|
-|kFrameFlag2In  | 0x50100000|  W/R|2| Setting the NIM-IN port to the internal frame flag-2 signal. It is valid when the module is the standalone mode. (default (0x1))|
-|kTriggerIn     | 0x50200000|  W/R|2| Setting the NIM-IN port to the internal trigger in signal. (default (0x3))|
-|kScrResetIn    | 0x50300000|  W/R|2| Setting the NIM-IN port to the internal scaler reset signal. This signal will be distributed to the mezzanine cards through MIKUMARI. (default (0x3))|
-| |  |  | | |
-|kSelOutSig1    | 0x51000000|  W/R|3| Selecting the internal signal to output from the NIM-OUT port 1. |
-|kSelOutSig2    | 0x51100000|  W/R|3| Selecting the internal signal to output from the NIM-OUT port 2. |
+|kFrameFlag1In|0x50000000|W/R|2|Setting the NIM-IN port to the internal frame flag-1 signal. It is valid when the module is the standalone mode. (default 0x0)|
+|kFrameFlag2In|0x50100000|W/R|2|Setting the NIM-IN port to the internal frame flag-2 signal. It is valid when the module is the standalone mode. (default (0x1))|
+|kTriggerIn|0x50200000|W/R|2|Setting the NIM-IN port to the internal trigger in signal. (default (0x3))|
+|kScrResetIn|0x50300000|W/R|2|Setting the NIM-IN port to the internal scaler reset signal. This signal will be distributed to the mezzanine cards through MIKUMARI. (default (0x3))|
+||||||
+|kSelOutSig1|0x51000000|W/R|3|Selecting the internal signal to output from the NIM-OUT port 1.|
+|kSelOutSig2|0x51100000|W/R|3|Selecting the internal signal to output from the NIM-OUT port 2.|
 
 アドレス値が`0x50X0'0000`のレジスタはNIM-INポートをどの内部信号へ接続するかを決定します。
 各レジスタに対して設定可能な値は以下の通りです。
 
 |Register value|Comment|
 |:----:|:----|
-|0x0| Connecting the NIM-IN port 1 to the corresponding internal signal.|
-|0x1| Connecting the NIM-IN port 2 to the corresponding internal signal.|
-|0x2| Not in use |
-|0x3| Connecting GND to the corresponding internal signal. |
+|0x0|Connecting the NIM-IN port 1 to the corresponding internal signal.|
+|0x1|Connecting the NIM-IN port 2 to the corresponding internal signal.|
+|0x2|Not in use|
+|0x3|Connecting GND to the corresponding internal signal.|
 
 アドレス値が`0x51X0'0000`のレジスタはどの内部信号をNIM-OUTポートへ接続するかを決定します。
 各レジスタに対して設定可能な値は以下の通りです。
 
 |Register value|Comment|
 |:----:|:----|
-|0x0| Connecting the heartbeat signal.|
-|0x1| Connecting the TCP connection establish.|
-|0x2| Connecting the trigger signal from LACCP.|
-|0x3| Connecting the frame flag-1.|
-|0x4| Connecting the frame flag-2.|
-|0x5| Connecting the div16 clock (7.8125 MHz)|
-|0x6| Connecting the system clock signal (125 MHz). |
-|0x7| Connecting the logic of 1|
+|0x0|Connecting the heartbeat signal.|
+|0x1|Connecting the TCP connection establish.|
+|0x2|Connecting the trigger signal from LACCP.|
+|0x3|Connecting the frame flag-1.|
+|0x4|Connecting the frame flag-2.|
+|0x5|Connecting the div16 clock (7.8125 MHz)|
+|0x6|Connecting the system clock signal (125 MHz).|
+|0x7|Connecting the logic of 1|
